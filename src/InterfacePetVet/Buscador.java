@@ -5,6 +5,8 @@
  */
 package InterfacePetVet;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cp
@@ -33,6 +35,8 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Buscador = new javax.swing.JLabel();
         jPanel_Volver = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel_Volver1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel_Cliente = new javax.swing.JLabel();
         jLabel_Calculadora = new javax.swing.JLabel();
         jLabel_Empleado = new javax.swing.JLabel();
@@ -54,6 +58,11 @@ public class Buscador extends javax.swing.JFrame {
 
         jPanel_Volver.setBackground(new java.awt.Color(0, 153, 102));
         jPanel_Volver.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel_Volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_VolverMouseClicked(evt);
+            }
+        });
 
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Volver");
@@ -61,9 +70,28 @@ public class Buscador extends javax.swing.JFrame {
 
         jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 70, -1));
 
+        jPanel_Volver1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel_Volver1.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel_Volver1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_Volver1MouseClicked(evt);
+            }
+        });
+
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("Ayuda");
+        jPanel_Volver1.add(jLabel9);
+
+        jPanel2.add(jPanel_Volver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 60, -1));
+
         jLabel_Cliente.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_account_white_18dp.png"))); // NOI18N
         jLabel_Cliente.setText("Clientes");
+        jLabel_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_ClienteMouseClicked(evt);
+            }
+        });
 
         jLabel_Calculadora.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_calculator_white_18dp.png"))); // NOI18N
@@ -72,6 +100,11 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_worker_white_18dp.png"))); // NOI18N
         jLabel_Empleado.setText("Empleados");
+        jLabel_Empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmpleadoMouseClicked(evt);
+            }
+        });
 
         jLabel_Medicamento.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_medical_bag_white_18dp.png"))); // NOI18N
@@ -124,6 +157,28 @@ public class Buscador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jPanel_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_VolverMouseClicked
+        Loggin vLoggin = new Loggin();
+        vLoggin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel_VolverMouseClicked
+
+    private void jPanel_Volver1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_Volver1MouseClicked
+        JOptionPane.showMessageDialog(this,"Clickar una de las opciones mostradas");
+    }//GEN-LAST:event_jPanel_Volver1MouseClicked
+
+    private void jLabel_EmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmpleadoMouseClicked
+        Empleado vEmpleado = new Empleado();
+        vEmpleado.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel_EmpleadoMouseClicked
+
+    private void jLabel_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ClienteMouseClicked
+        Cliente vCliente = new Cliente();
+        vCliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel_ClienteMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -162,6 +217,7 @@ public class Buscador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Buscador;
     private javax.swing.JLabel jLabel_Calculadora;
     private javax.swing.JLabel jLabel_Cliente;
@@ -170,5 +226,6 @@ public class Buscador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Volver;
+    private javax.swing.JPanel jPanel_Volver1;
     // End of variables declaration//GEN-END:variables
 }
