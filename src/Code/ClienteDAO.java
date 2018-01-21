@@ -80,7 +80,7 @@ public class ClienteDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (dni, nombre, apellido, fechaNacimiento, numTelef, direccion, fechaIngreso,fechaUltMod) VALUES (?,?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (dni, nombre, apellido, fechaNacimiento, numTelef, direccion, fechaIngreso,fechaUltMod,mascotas) VALUES (?,?,?,?,?,?,?,?,?)");
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
             st.setString(3, cliente.getApellido());
@@ -89,6 +89,12 @@ public class ClienteDAO extends ConexionBD {
             st.setString(6, cliente.getDireccion()); 
             st.setString(7, cliente.getFechaIngreso());
             st.setString(8, cliente.getFechaUltMod()); 
+            List<String> listaMascotas=cliente.getMascotas();
+            String stringListaMascotas="";
+            for (String mascotaAux : listaMascotas) {
+                stringListaMascotas=stringListaMascotas+mascotaAux+",";
+            }
+            st.setString(9,stringListaMascotas);
             st.executeUpdate();
             
         }catch(Exception e){
