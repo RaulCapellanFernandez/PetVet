@@ -37,7 +37,6 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Calculadora = new javax.swing.JLabel();
         jLabel_Empleado = new javax.swing.JLabel();
         jLabel_Medicamento = new javax.swing.JLabel();
-        jLabel_Mascota = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -63,24 +62,20 @@ public class Buscador extends javax.swing.JFrame {
         jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 70, -1));
 
         jLabel_Cliente.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Cliente.setIcon(new javax.swing.ImageIcon("/Users/cp/Downloads/account/drawable-xxxhdpi/ic_account_white_18dp.png")); // NOI18N
+        jLabel_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_account_white_18dp.png"))); // NOI18N
         jLabel_Cliente.setText("Clientes");
 
         jLabel_Calculadora.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Calculadora.setIcon(new javax.swing.ImageIcon("/Users/cp/Downloads/calculator/drawable-xxxhdpi/ic_calculator_white_18dp.png")); // NOI18N
+        jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_calculator_white_18dp.png"))); // NOI18N
         jLabel_Calculadora.setText("Calculadora");
 
         jLabel_Empleado.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Empleado.setIcon(new javax.swing.ImageIcon("/Users/cp/Downloads/worker/drawable-xxxhdpi/ic_worker_white_18dp.png")); // NOI18N
+        jLabel_Empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_worker_white_18dp.png"))); // NOI18N
         jLabel_Empleado.setText("Empleados");
 
         jLabel_Medicamento.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Medicamento.setIcon(new javax.swing.ImageIcon("/Users/cp/Downloads/medical-bag/drawable-xxxhdpi/ic_medical_bag_white_18dp.png")); // NOI18N
+        jLabel_Medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_medical_bag_white_18dp.png"))); // NOI18N
         jLabel_Medicamento.setText("Medicamentos");
-
-        jLabel_Mascota.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Mascota.setIcon(new javax.swing.ImageIcon("/Users/cp/Downloads/paw/drawable-xxxhdpi/ic_paw_white_18dp.png")); // NOI18N
-        jLabel_Mascota.setText("Mascotas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,21 +91,18 @@ public class Buscador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Cliente)
-                            .addComponent(jLabel_Mascota)
                             .addComponent(jLabel_Medicamento)
                             .addComponent(jLabel_Calculadora))
                         .addGap(40, 49, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_Empleado)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel_Cliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_Mascota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Medicamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,7 +166,6 @@ public class Buscador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Calculadora;
     private javax.swing.JLabel jLabel_Cliente;
     private javax.swing.JLabel jLabel_Empleado;
-    private javax.swing.JLabel jLabel_Mascota;
     private javax.swing.JLabel jLabel_Medicamento;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
