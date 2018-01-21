@@ -11,6 +11,15 @@ public class ConexionBD {
     private String pass;
     private Connection conexion;
     //Getters y setters de la clase
+
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
+    }
+    
     public String getDataBaseURL() {
         return dataBaseURL;
     }

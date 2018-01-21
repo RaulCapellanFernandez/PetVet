@@ -8,7 +8,7 @@ de la tabla Empleados.
 
 public class Empleado{
     
-    public static enum TipoDeUsuario{auxiliar, veterinario};
+    public static enum TipoDeEmpleado{auxiliar, veterinario};
     
     //Declaracion de Variables
     private int dni;
@@ -16,8 +16,8 @@ public class Empleado{
     private String apellido;
     private String numTelf;
     private String contrasena;
-    private TipoDeUsuario tipo;
-
+    private TipoDeEmpleado tipo;
+    /*
     public Empleado(int dni, String name, String apellido, String numTelf, String contrasena, TipoDeUsuario tipo) {
         this.dni = dni;
         this.name = name;
@@ -26,7 +26,7 @@ public class Empleado{
         this.contrasena = contrasena;
         this.tipo = tipo;
     }
-    
+    */
    
     //Getters y Setters
     public void setContrasena(String contrasena) {
@@ -67,10 +67,10 @@ public class Empleado{
     public void setNumTelf(String numTelf) {
         this.numTelf = numTelf;
     }
-    public TipoDeUsuario getTipo(){
+    public TipoDeEmpleado getTipo(){
         return tipo;
     }
-    public void setTipo(TipoDeUsuario tipo){
+    public void setTipo(TipoDeEmpleado tipo){
         this.tipo = tipo;
     }
 
