@@ -13,12 +13,15 @@ public class Medicamento{
     private String nombreTecnico;
     private int cantidadMedicamento;
     private ArrayList<String> principiosActivos = new ArrayList<String>();
-
-    public Medicamento(int codigoMedicamento, String nombreTecnico, int cantidadMedicamento) {
+    public Medicamento(){
+        //Constructor vacío que llenaremos con setters
+    }
+    /*public Medicamento(int codigoMedicamento, String nombreTecnico, int cantidadMedicamento) {
         this.codigoMedicamento = codigoMedicamento;
         this.nombreTecnico = nombreTecnico;
         this.cantidadMedicamento = cantidadMedicamento;
     }
+    */
     
     //Getters y Setters
     public int getCodigoMedicamento() {

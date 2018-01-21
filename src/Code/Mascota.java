@@ -6,26 +6,31 @@ de la tabla Mascota.
 */
 
 public class Mascota{
-    public static enum TipoDeMascota{perro, gato};
+    public Mascota(){
+        //Se crea un objeto vacío, que se llenará con los setters
+    }
+    public static enum TipoDeMascota{sano,tratamiento,hospitalizado};
     //Variables
-    private int dniCliente;
+    private String dniCliente;
     private int numChip;
     private String nombre;
     private String raza;
     private TipoDeMascota tipo;
+    private float peso;
 
-    //Constructor
-    public Mascota(int dniCliente, int numChip, String nombre, String raza, TipoDeMascota tipo) {
+    /*Constructor
+    public Mascota(String dniCliente, int numChip, String nombre, String raza, TipoDeMascota tipo) {
         this.dniCliente = dniCliente;
         this.numChip = numChip;
         this.nombre = nombre;
         this.raza = raza;
         this.tipo = tipo;
     }
+    */
     
 
     //Getters y Setters
-    public int getDniCliente() {
+    public String getDniCliente() {
         return dniCliente;
     }
 
@@ -36,7 +41,7 @@ public class Mascota{
     public String getNombre() {
         return nombre;
     }
-
+    
     public String getRaza() {
         return raza;
     }
@@ -44,8 +49,11 @@ public class Mascota{
     public TipoDeMascota getTipo() {
         return tipo;
     }
+    public float getPeso() {
+        return peso;
+    }
 
-    public void setDniCliente(int dniCliente) {
+    public void setDniCliente(String dniCliente) {
         this.dniCliente = dniCliente;
     }
 
@@ -63,6 +71,9 @@ public class Mascota{
 
     public void setTipo(TipoDeMascota tipo) {
         this.tipo = tipo;
+    }
+    public void setPeso(float peso){
+        this.peso=peso;
     }
     
     

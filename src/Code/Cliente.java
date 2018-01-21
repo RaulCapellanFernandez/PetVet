@@ -2,14 +2,18 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*Esta clase es la encargada de hacer referencia a los atributos de la base de datos 
 de la tabla Cliente.
 */
 
 public class Cliente{
+    public Cliente(){
+        //Constructor vacío que llenaremos con setters
+    }
     //Variables
-    private int dni;
+    private String dni;
     private String name;
     private String apellido;
     private String fechaNacimineto;
@@ -17,8 +21,8 @@ public class Cliente{
     private String direccion;
     private String fechaIngreso;
     private String fechaUltMod;
-    private Mascota mascotas;
-
+    private List<String> mascotas; 
+    /*
     public Cliente(int dni, String name, String apellido, String fechaNacimineto, String numTelf, String direccion, String fechaIngreso, String fechaUltMod, Mascota mascotas) {
         this.dni = dni;
         this.name = name;
@@ -29,10 +33,10 @@ public class Cliente{
         this.fechaIngreso = fechaIngreso;
         this.fechaUltMod = fechaUltMod;
         this.mascotas = mascotas;
-    }
+    }*/
     
     //Gettersy Setters
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -64,11 +68,11 @@ public class Cliente{
         this.fechaUltMod = fechaUltMod;
     }
 
-    public void setMascotas(Mascota mascotas) {
+    public void setMascotas(List<String> mascotas) {
         this.mascotas = mascotas;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
@@ -100,7 +104,7 @@ public class Cliente{
         return fechaUltMod;
     }
 
-    public Mascota getMascotas() {
+    public List<String> getMascotas() {
         return mascotas;
     }
    

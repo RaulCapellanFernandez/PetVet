@@ -11,12 +11,15 @@ public class Empleado{
     public static enum TipoDeEmpleado{auxiliar, veterinario};
     
     //Declaracion de Variables
-    private int dni;
+    private String dni;
     private String name;
     private String apellido;
     private String numTelf;
     private String contrasena;
     private TipoDeEmpleado tipo;
+    public Empleado(){
+        //Se crea un constructor vacío, los datos se llenaran con setters
+    }
     /*
     public Empleado(int dni, String name, String apellido, String numTelf, String contrasena, TipoDeUsuario tipo) {
         this.dni = dni;
@@ -33,7 +36,7 @@ public class Empleado{
         this.contrasena = contrasena;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
@@ -52,7 +55,7 @@ public class Empleado{
     public String getContrasena() {
         return contrasena;
     }
-     public void setDni(int dni) {
+     public void setDni(String dni) {
         this.dni = dni;
     }
 

@@ -1,33 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Code;
 
-import Code.ConexionBD;
-import Code.Empleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-Clase encargada de comunicar la base de datos con el codigo de dicha clase
-*/
-public class EmpleadoDAO extends ConexionBD {
-    ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
+/**
+ *
+ * @author cp
+ */
+public class MedicamentoDAO extends ConexionBD {
+     ArrayList<Medicamento> listaMedicamentos = new <Medicamento>ArrayList(); 
 
-    public List<Empleado> listar() throws Exception{
+    public List<Medicamento> listar() throws Exception{
         
         
         try{
             this.abrirConexion();
             //Cambiar esto segun la BBDD
-            PreparedStatement st = this.getConexion().prepareStatement("SELECT * from empleados");
+            PreparedStatement st = this.getConexion().prepareStatement("SELECT * from medicamentos");
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Empleado empleado = new Empleado(); 
-                empleado.setDni(rs.getString("dni")); 
-                empleado.setName(rs.getString("nombre")); 
-                empleado.setApellido(rs.getString("apellido")); 
-                empleado.setContrasena(rs.getString("contraseña")); 
+                Medicamento medicamento = new Medicamento(); 
+                medicamento.setCodigoMedicamento(rs.getInt("codigo")); 
+                medicamento.setNombreTecnico(rs.getString("nombre")); 
+                medicamento.setCantidadMedicamento(rs.getInt("cantidad")); 
+                medicamento.setContrasena(rs.getString("contraseña")); 
                 empleado.setNumTelf(rs.getString("numTelf")); 
                 empleado.setTipo(Empleado.TipoDeEmpleado.valueOf(rs.getString("Tipo"))); 
 
@@ -87,5 +91,4 @@ public class EmpleadoDAO extends ConexionBD {
             }
         }
     }
-    
 }
