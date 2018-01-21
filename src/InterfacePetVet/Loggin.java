@@ -5,6 +5,8 @@
  */
 package InterfacePetVet;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cp
@@ -33,11 +35,13 @@ public class Loggin extends javax.swing.JFrame {
         jLabel_Image = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jTextField_DNI = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField_Contrasenia = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel_Entrar = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel_Entrar1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,21 +70,26 @@ public class Loggin extends javax.swing.JFrame {
         });
         jPanel2.add(jTextField_DNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 210, -1));
 
-        jTextField2.setBackground(jPanel2.getBackground());
-        jTextField2.setForeground(new java.awt.Color(240, 240, 240));
-        jTextField2.setText("Contraseña");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Contrasenia.setBackground(jPanel2.getBackground());
+        jTextField_Contrasenia.setForeground(new java.awt.Color(240, 240, 240));
+        jTextField_Contrasenia.setText("Contraseña");
+        jTextField_Contrasenia.setBorder(null);
+        jTextField_Contrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextField_ContraseniaActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 210, -1));
+        jPanel2.add(jTextField_Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 210, -1));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 220, 10));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 220, 10));
 
         jPanel_Entrar.setBackground(new java.awt.Color(0, 153, 102));
         jPanel_Entrar.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel_Entrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_EntrarMouseClicked(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(240, 240, 240));
         jLabel5.setText("Entrar");
@@ -88,17 +97,35 @@ public class Loggin extends javax.swing.JFrame {
 
         jPanel2.add(jPanel_Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 70, 30));
 
+        jPanel_Entrar1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel_Entrar1.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel_Entrar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_Entrar1MouseClicked(evt);
+            }
+        });
+
+        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel6.setText("Ayuda");
+        jPanel_Entrar1.add(jLabel6);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_Entrar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel_Entrar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,9 +146,28 @@ public class Loggin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_DNIActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField_ContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ContraseniaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextField_ContraseniaActionPerformed
+
+    private void jPanel_EntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_EntrarMouseClicked
+      String dni = "root";
+      String contrasenia = "1234";
+      
+   
+      if(jTextField_DNI.getText().equals(dni) && jTextField_Contrasenia.getText().equals(contrasenia)){
+            Buscador vBuscador = new Buscador();
+            vBuscador.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this,"No es correcto el usuario o la contraseña.");
+        }
+      
+    }//GEN-LAST:event_jPanel_EntrarMouseClicked
+
+    private void jPanel_Entrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_Entrar1MouseClicked
+        JOptionPane.showMessageDialog(this,"Usuario defecto: root\nContraseña defecto: 1234.");
+    }//GEN-LAST:event_jPanel_Entrar1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,15 +206,17 @@ public class Loggin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_Image;
     private javax.swing.JLabel jLabel_Loggin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Entrar;
+    private javax.swing.JPanel jPanel_Entrar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField_Contrasenia;
     private javax.swing.JTextField jTextField_DNI;
     // End of variables declaration//GEN-END:variables
 }
