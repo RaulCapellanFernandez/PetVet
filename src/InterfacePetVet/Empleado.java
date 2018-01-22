@@ -133,7 +133,7 @@ public class Empleado extends javax.swing.JFrame {
         jLabel8.setText("Volver");
         jPanel_Volver.add(jLabel8);
 
-        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, -1));
+        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, -1));
 
         jTextField9.setBackground(jPanel1.getBackground());
         jTextField9.setForeground(new java.awt.Color(240, 240, 240));

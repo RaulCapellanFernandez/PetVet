@@ -132,7 +132,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel8.setText("Volver");
         jPanel_Volver.add(jLabel8);
 
-        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 70, -1));
+        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, -1));
 
         jTextField9.setBackground(jPanel1.getBackground());
         jTextField9.setForeground(new java.awt.Color(240, 240, 240));
@@ -250,9 +250,9 @@ public class Cliente extends javax.swing.JFrame {
                             .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(56, 56, 56)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
@@ -290,11 +290,11 @@ public class Cliente extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -390,8 +390,8 @@ public class Cliente extends javax.swing.JFrame {
                 jTextField9.setText("Apellido/s: "+clienteSeleccionado.getApellido());
                 jTextField10.setText("DNI: "+clienteSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+clienteSeleccionado.getNumTelf());
-                jTextField12.setText("Contraseña: "+clienteSeleccionado.getFechaNacimineto());
-                jTextField13.setText("Contraseña: "+clienteSeleccionado.getDireccion());
+                jTextField12.setText("Fecha Nacimineto: "+clienteSeleccionado.getFechaNacimineto());
+                jTextField13.setText("Direccion: "+clienteSeleccionado.getDireccion());
             }
         } catch (Exception ex) {
             System.out.println("Wops");
