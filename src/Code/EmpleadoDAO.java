@@ -10,19 +10,14 @@ import java.util.List;
 Clase encargada de comunicar la base de datos con el codigo de dicha clase
 */
 public class EmpleadoDAO extends ConexionBD {
-<<<<<<< HEAD
     public ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
     public EmpleadoDAO() throws Exception{
         listar();
     }
     
-    
-    public void listar() throws Exception{
-=======
-    ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
+     
 
-     public List<Empleado> listar() throws Exception{
->>>>>>> 611368579cd21caefb89e4e18916897d6e3f831d
+    public void listar() throws Exception{
         
         
         try{
