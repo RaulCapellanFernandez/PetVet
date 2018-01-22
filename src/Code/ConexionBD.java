@@ -53,7 +53,7 @@ public class ConexionBD {
     }
     //Fin Getters y Setters
     public ConexionBD(){//HAY QUE MODIFICAR TODO ESTO CON LOS DATOS DE NUESTRA BASE DE DATOS-------------------------
-        this.dataBaseURL = "jdbc:mysql://localhost:3306/instituto?autoReconnect=true&useSSL=true"; 
+        this.dataBaseURL = "jdbc:mysql://localhost:3306/clinica?autoReconnect=true&useSSL=true"; 
         this.driverName = "com.mysql.jdbc.Driver";
         this.user = "softwareI";
         this.pass = "softwareI";
