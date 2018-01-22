@@ -5,14 +5,11 @@
  */
 package InterfacePetVet;
 
-<<<<<<< HEAD
 import java.util.List;
 import Code.EmpleadoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-=======
 import javax.swing.JOptionPane;
->>>>>>> 611368579cd21caefb89e4e18916897d6e3f831d
 
 /**
  *
@@ -304,7 +301,6 @@ public class Empleado extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         try {
-            System.out.println("Click en cargar");
             List<Code.Empleado> listaEmpleados;
             Code.Empleado empleadoSeleccionado=new Code.Empleado();
             empleadoSeleccionado.setName("Ninguno");
@@ -316,15 +312,20 @@ public class Empleado extends javax.swing.JFrame {
                     empleadoSeleccionado=empleadoAux;
                 }
                 else{
-                    System.out.println("No es "+empleadoAux.getName());
+                    //System.out.println("No es "+empleadoAux.getName());
                 }
             }
             if(empleadoSeleccionado.getName().equals("Ninguno")){
-                System.out.println("Ese usuario, "+nombreEmpleadoSeleccionado+" no existe!");
+                //System.out.println("Ese usuario, "+nombreEmpleadoSeleccionado+" no existe!");
                 return;
             }
             else{
-                System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
+                //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
+                jTextField8.setText(empleadoSeleccionado.getName());
+                jTextField9.setText(empleadoSeleccionado.getApellido());
+                jTextField10.setText(empleadoSeleccionado.getDni());
+                jTextField11.setText(empleadoSeleccionado.getNumTelf());
+                jTextField12.setText(empleadoSeleccionado.getContrasena());
             }
         } catch (Exception ex) {
             System.out.println("Wops");
