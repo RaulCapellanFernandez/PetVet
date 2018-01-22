@@ -93,7 +93,7 @@ public class Empleado extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(153, 0, 51));
         jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Josefa", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rafa", "Josefa", "Ramon"}));
         jComboBox1.setBorder(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,11 +321,11 @@ public class Empleado extends javax.swing.JFrame {
             }
             else{
                 //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
-                jTextField8.setText(empleadoSeleccionado.getName());
-                jTextField9.setText(empleadoSeleccionado.getApellido());
-                jTextField10.setText(empleadoSeleccionado.getDni());
-                jTextField11.setText(empleadoSeleccionado.getNumTelf());
-                jTextField12.setText(empleadoSeleccionado.getContrasena());
+                jTextField8.setText("Nombre: "+empleadoSeleccionado.getName());
+                jTextField9.setText("Apellido/s: "+empleadoSeleccionado.getApellido());
+                jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
+                jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
+                jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
             }
         } catch (Exception ex) {
             System.out.println("Wops");
