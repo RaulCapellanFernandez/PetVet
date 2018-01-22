@@ -5,6 +5,10 @@
  */
 package InterfacePetVet;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -151,17 +155,66 @@ public class Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_ContraseniaActionPerformed
 
     private void jPanel_EntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_EntrarMouseClicked
-      String dni = "root";
-      String contrasenia = "1234";
-      
-   
-      if(jTextField_DNI.getText().equals(dni) && jTextField_Contrasenia.getText().equals(contrasenia)){
+       
+        List<String> dniAuxiliares = new ArrayList<String>();
+        List<String> passwordsAuxiliares = new ArrayList<String>();
+        List<String> dniVeterinarios=new ArrayList<String>();
+        List<String> passwordsVeterinarios=new ArrayList<String>();
+        boolean dentro=false; 
+        try {
+            Code.EmpleadoDAO objetoEmpleadoDAO=new Code.EmpleadoDAO();
+            for(Code.Empleado empleadoAux : objetoEmpleadoDAO.listaEmpleados){
+                //System.out.println("El dni es: "+empleadoAux.getDni());
+                if(empleadoAux.getTipo().equals("Veterinario")){
+                    dniVeterinarios.add(empleadoAux.getDni());
+                    passwordsVeterinarios.add(empleadoAux.getContrasena());
+                    //System.err.println(dniVeterinarios);
+                }
+                else{
+                    dniAuxiliares.add(empleadoAux.getDni());
+                    passwordsAuxiliares.add(empleadoAux.getContrasena());
+                    //System.err.println(dniAuxiliares);
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Loggin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String DNILoggin=jTextField_DNI.getText();
+        String PassLoggin=jTextField_Contrasenia.getText();
+        if(DNILoggin.equals("root")&&PassLoggin.equals("1234")){
+            
             Buscador vBuscador = new Buscador();
             vBuscador.setVisible(true);
             dispose();
-        }else{
+        }
+        else{
+
+            int i=0;
+            for(String dniAux : dniVeterinarios){
+                if(dniAux.equals(DNILoggin)){
+                    if(passwordsVeterinarios.get(i).equals(PassLoggin)){
+                        
+                        Buscador vBuscador = new Buscador();
+                        vBuscador.setVisible(true);
+                        dispose();
+                        return;
+                    }
+                }
+                i++;
+            }
+            i=0;
+            for(String dniAux : dniAuxiliares){
+                if(dniAux.equals(DNILoggin)){
+                    if(passwordsAuxiliares.get(i).equals(PassLoggin)){
+                        JOptionPane.showMessageDialog(this,"No tienes permiso para entrar (Por implementar).");
+                        return;
+                    }
+                }
+            }
             JOptionPane.showMessageDialog(this,"No es correcto el usuario o la contraseña.");
         }
+       
+       
       
     }//GEN-LAST:event_jPanel_EntrarMouseClicked
 
