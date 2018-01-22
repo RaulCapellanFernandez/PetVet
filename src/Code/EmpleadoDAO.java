@@ -12,9 +12,13 @@ import java.util.List;
 Clase encargada de comunicar la base de datos con el codigo de dicha clase
 */
 public class EmpleadoDAO extends ConexionBD {
-    ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
-
-    public List<Empleado> listar() throws Exception{
+    public ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
+    public EmpleadoDAO() throws Exception{
+        listar();
+    }
+    
+    
+    public void listar() throws Exception{
         
         
         try{
@@ -30,17 +34,18 @@ public class EmpleadoDAO extends ConexionBD {
                 empleado.setNumTelf(rs.getString("Telefono")); 
                 empleado.setContrasena(rs.getString("Contraseña")); 
                 empleado.setCuentaBancaria(rs.getString("CuentaBancaria"));
-                empleado.setTipo(Empleado.TipoDeEmpleado.valueOf(rs.getString("Tipo"))); 
+                empleado.setTipo(rs.getString("Tipo")); 
 
                 listaEmpleados.add(empleado);
             }
+            System.out.println("Cierro la conexion");
             this.cerrarConexion(); 
 
         }catch (Exception e){
             throw new Exception("Listar usuarios " + e.getMessage());
         }
 
-        return(listaEmpleados);
+        return;
     }
     
     public void eliminar(Empleado empleado) throws Exception {
@@ -74,7 +79,7 @@ public class EmpleadoDAO extends ConexionBD {
             st.setString(4, empleado.getNumTelf());
             st.setString(5, empleado.getContrasena());
             st.setString(6, empleado.getCuentaBancaria());
-            st.setString(7, String.valueOf(empleado.getTipo())); 
+            st.setString(7, empleado.getTipo()); 
             st.executeUpdate();
             
         }catch(Exception e){

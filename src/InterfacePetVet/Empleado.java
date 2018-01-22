@@ -5,6 +5,11 @@
  */
 package InterfacePetVet;
 
+import java.util.List;
+import Code.EmpleadoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author cp
@@ -85,7 +90,7 @@ public class Empleado extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(153, 0, 51));
         jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Josefa", "Item 3", "Item 4" }));
         jComboBox1.setBorder(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +291,33 @@ public class Empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
+        try {
+            System.out.println("Click en cargar");
+            List<Code.Empleado> listaEmpleados;
+            Code.Empleado empleadoSeleccionado=new Code.Empleado();
+            empleadoSeleccionado.setName("Ninguno");
+            EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
+            listaEmpleados=objetoEmpleadoDAO.listaEmpleados;
+            String nombreEmpleadoSeleccionado=String.valueOf(jComboBox1.getSelectedItem());;
+            for(Code.Empleado empleadoAux : listaEmpleados){
+                if(empleadoAux.getName().equals(nombreEmpleadoSeleccionado)){
+                    empleadoSeleccionado=empleadoAux;
+                }
+                else{
+                    System.out.println("No es "+empleadoAux.getName());
+                }
+            }
+            if(empleadoSeleccionado.getName().equals("Ninguno")){
+                System.out.println("Ese usuario, "+nombreEmpleadoSeleccionado+" no existe!");
+                return;
+            }
+            else{
+                System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
+            }
+        } catch (Exception ex) {
+            System.out.println("Wops");
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel5MouseClicked
 
     /**

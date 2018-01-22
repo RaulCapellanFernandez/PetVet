@@ -11,7 +11,6 @@ public class Empleado{
 
   
     
-    public static enum TipoDeEmpleado{auxiliar, veterinario};
     
     //Declaracion de Variables
     private String dni;
@@ -19,7 +18,7 @@ public class Empleado{
     private String apellido;
     private String numTelf;
     private String contrasena;
-    private TipoDeEmpleado tipo;
+    private String tipo;
     private String cuentaBancaria;
     public Empleado(){
         //Se crea un constructor vacío, los datos se llenaran con setters
@@ -78,10 +77,10 @@ public class Empleado{
     public void setNumTelf(String numTelf) {
         this.numTelf = numTelf;
     }
-    public TipoDeEmpleado getTipo(){
+    public String getTipo(){
         return tipo;
     }
-    public void setTipo(TipoDeEmpleado tipo){
+    public void setTipo(String tipo){
         this.tipo = tipo;
     }
     public void setCuentaBancaria(String cuenta) {

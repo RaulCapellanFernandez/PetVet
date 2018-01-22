@@ -66,6 +66,7 @@ public class ConexionBD {
             try{
                 Class.forName(this.driverName);
                 this.conexion = DriverManager.getConnection(this.dataBaseURL, this.user, this.pass);
+                System.out.println("Se ha conectado con la BD");
             }
             catch (Exception e){
                 throw new Exception("Al abrir la base de datos " + e.getMessage()); }
