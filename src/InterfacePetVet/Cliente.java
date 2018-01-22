@@ -392,6 +392,7 @@ public class Cliente extends javax.swing.JFrame {
                 jTextField11.setText("Telefono: "+clienteSeleccionado.getNumTelf());
                 jTextField12.setText("Fecha Nacimineto: "+clienteSeleccionado.getFechaNacimineto());
                 jTextField13.setText("Direccion: "+clienteSeleccionado.getDireccion());
+                
             }
         } catch (Exception ex) {
             System.out.println("Wops");

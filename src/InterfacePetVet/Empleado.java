@@ -331,6 +331,12 @@ public class Empleado extends javax.swing.JFrame {
                 jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
                 jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
+                
+                if(empleadoSeleccionado.getTipo().equalsIgnoreCase("auxiliar")){
+                    jComboBox2.add("Auxiliar", this);
+                }
+                else
+                    jComboBox2.add("Veterinario", this);
             }
         } catch (Exception ex) {
             System.out.println("Wops");
