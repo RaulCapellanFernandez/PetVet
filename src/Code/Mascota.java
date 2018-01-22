@@ -17,6 +17,7 @@ public class Mascota{
     private String raza;
     private TipoDeMascota tipo;
     private float peso;
+    private int edad;
 
     /*Constructor
     public Mascota(String dniCliente, int numChip, String nombre, String raza, TipoDeMascota tipo) {
@@ -52,6 +53,9 @@ public class Mascota{
     public float getPeso() {
         return peso;
     }
+    public int getEdad(){
+        return edad;
+    }
 
     public void setDniCliente(String dniCliente) {
         this.dniCliente = dniCliente;
@@ -75,6 +79,8 @@ public class Mascota{
     public void setPeso(float peso){
         this.peso=peso;
     }
-    
+    public void setEdad(int edad){
+        this.edad=edad;
+    }
     
 }

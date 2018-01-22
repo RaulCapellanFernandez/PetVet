@@ -29,11 +29,11 @@ public class MedicamentoDAO extends ConexionBD {
             while(rs.next()){
                 Medicamento medicamento = new Medicamento(); 
                 
-                medicamento.setCodigoMedicamento(rs.getInt("codigo")); 
-                medicamento.setNombreTecnico(rs.getString("nombre")); 
-                medicamento.setCantidadMedicamento(rs.getInt("cantidad")); 
+                medicamento.setCodigoMedicamento(rs.getInt("CodigoMedicamento")); 
+                medicamento.setNombreTecnico(rs.getString("NombreTecnico")); 
+                medicamento.setCantidadMedicamento(rs.getInt("CantidadMedicamento")); 
                 ArrayList<String> listaPrincipiosActivos=new <String>ArrayList();
-                String stringPrincipiosActivos=rs.getString("principiosActivos");
+                String stringPrincipiosActivos=rs.getString("PrincipiosActivos");
                 String[] splitStringPrincipiosActivos=stringPrincipiosActivos.split(",");
                 for(int i=0;i<splitStringPrincipiosActivos.length;i++){
                     listaPrincipiosActivos.add(splitStringPrincipiosActivos[i]);
@@ -55,7 +55,7 @@ public class MedicamentoDAO extends ConexionBD {
     public void eliminar(Medicamento medicamento) throws Exception {
         try{
             this.abrirConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM medicamento WHERE codigo==?");
+            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM medicamentos WHERE CodigoMedicamento==?");
             st.setInt(1, medicamento.getCodigoMedicamento()); st.executeUpdate();
         }
         catch (Exception e){
@@ -76,7 +76,7 @@ public class MedicamentoDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO medicamento (codigo, nombre, cantidad, principiosActivos) VALUES (?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO medicamentos (CodigoMedicamento, NombreTecnico, CantidadMedicamento, PrincipiosActivosç) VALUES (?,?,?,?)");
             st.setInt(1, medicamento.getCodigoMedicamento());
             st.setString(2, medicamento.getNombreTecnico()); 
             st.setInt(3, medicamento.getCantidadMedicamento());

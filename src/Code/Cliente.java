@@ -22,6 +22,7 @@ public class Cliente{
     private String fechaIngreso;
     private String fechaUltMod;
     private List<String> mascotas; 
+    private float deuda;
     /*
     public Cliente(int dni, String name, String apellido, String fechaNacimineto, String numTelf, String direccion, String fechaIngreso, String fechaUltMod, Mascota mascotas) {
         this.dni = dni;
@@ -71,6 +72,9 @@ public class Cliente{
     public void setMascotas(List<String> mascotas) {
         this.mascotas = mascotas;
     }
+    public void setDeuda(float deuda){
+        this.deuda=deuda;
+    }
 
     public String getDni() {
         return dni;
@@ -106,6 +110,9 @@ public class Cliente{
 
     public List<String> getMascotas() {
         return mascotas;
+    }
+    public float getDeuda(){
+        return deuda;
     }
    
 }

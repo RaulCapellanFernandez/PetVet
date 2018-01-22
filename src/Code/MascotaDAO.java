@@ -26,13 +26,14 @@ public class MascotaDAO extends ConexionBD {
             ResultSet rs=st.executeQuery();
             while(rs.next()){
                 Mascota mascota=new Mascota();
-                mascota.setDniCliente(rs.getString("dniCliente"));
-                mascota.setNombre(rs.getString("nombre"));
-                mascota.setNumChip(rs.getInt("chip"));
-                mascota.setPeso(rs.getFloat("peso"));
-                mascota.setRaza(rs.getString("raza"));
-                mascota.setTipo(Mascota.TipoDeMascota.valueOf(rs.getString("tipo")));
                 
+                mascota.setNumChip(rs.getInt("NumeroChip"));
+                mascota.setNombre(rs.getString("Nombre"));
+                mascota.setTipo(Mascota.TipoDeMascota.valueOf(rs.getString("TipoMascota")));
+                mascota.setRaza(rs.getString("Raza"));
+                mascota.setDniCliente(rs.getString("DNICliente"));
+                mascota.setPeso(rs.getFloat("Peso"));
+                mascota.setEdad(rs.getInt("Edad"));
             }
             this.cerrarConexion();
             
@@ -45,7 +46,7 @@ public class MascotaDAO extends ConexionBD {
     public void eliminar(Mascota mascota) throws Exception{
         try{
             this.abrirConexion();
-            PreparedStatement st=this.getConexion().prepareStatement("DElETE FROM mascotas WHERE chip==?");
+            PreparedStatement st=this.getConexion().prepareStatement("DElETE FROM mascotas WHERE NumeroChip==?");
             st.setInt(1,mascota.getNumChip());st.executeUpdate();
             
         }
@@ -68,13 +69,15 @@ public class MascotaDAO extends ConexionBD {
             cn=this.getConexion();
             
             PreparedStatement st=this.getConexion().prepareStatement(
-                    "INSERT INTO mascotas (dniCliente, numChip, nombre, raza, tipo, peso) VALUES (?,?,?,?,?,?)");
-            st.setString(1, mascota.getDniCliente());
-            st.setInt(2, mascota.getNumChip()); 
-            st.setString(3, mascota.getNombre());
+                    "INSERT INTO mascotas (NumeroChip, Nombre, TipoMascota, Raza, DNICliente, Peso, Edad) VALUES (?,?,?,?,?,?,?)");
+            st.setInt(1, mascota.getNumChip()); 
+            st.setString(2, mascota.getNombre());
+            st.setString(3, String.valueOf(mascota.getTipo()));
             st.setString(4, mascota.getRaza());
-            st.setString(5, String.valueOf(mascota.getTipo()));
+            st.setString(5, mascota.getDniCliente());
             st.setFloat(6, mascota.getPeso()); 
+            st.setInt(7, mascota.getEdad());
+            
             st.executeUpdate();
         }catch(Exception e){
             throw new Exception("Insertar una mascota "+e.getMessage());

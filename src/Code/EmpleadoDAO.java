@@ -24,11 +24,12 @@ public class EmpleadoDAO extends ConexionBD {
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 Empleado empleado = new Empleado(); 
-                empleado.setDni(rs.getString("dni")); 
-                empleado.setName(rs.getString("nombre")); 
-                empleado.setApellido(rs.getString("apellido")); 
-                empleado.setContrasena(rs.getString("contraseña")); 
-                empleado.setNumTelf(rs.getString("numTelf")); 
+                empleado.setDni(rs.getString("DNI")); 
+                empleado.setName(rs.getString("Nombre")); 
+                empleado.setApellido(rs.getString("Apellidos")); 
+                empleado.setNumTelf(rs.getString("Telefono")); 
+                empleado.setContrasena(rs.getString("Contraseña")); 
+                empleado.setCuentaBancaria(rs.getString("CuentaBancaria"));
                 empleado.setTipo(Empleado.TipoDeEmpleado.valueOf(rs.getString("Tipo"))); 
 
                 listaEmpleados.add(empleado);
@@ -66,13 +67,14 @@ public class EmpleadoDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (dni, nombre, apellidos, numTelf, password) VALUES (?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Contraseña, CuentaBancaria, Tipo) VALUES (?,?,?,?,?,?,?)");
             st.setString(1, empleado.getDni());
             st.setString(2, empleado.getName()); 
             st.setString(3, empleado.getApellido());
-            st.setString(4, empleado.getContrasena());
-            st.setString(5, empleado.getNumTelf());
-            st.setString(6, String.valueOf(empleado.getTipo())); 
+            st.setString(4, empleado.getNumTelf());
+            st.setString(5, empleado.getContrasena());
+            st.setString(6, empleado.getCuentaBancaria());
+            st.setString(7, String.valueOf(empleado.getTipo())); 
             st.executeUpdate();
             
         }catch(Exception e){

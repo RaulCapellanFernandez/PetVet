@@ -28,21 +28,22 @@ public class ClienteDAO extends ConexionBD {
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 Cliente cliente = new Cliente(); 
-                cliente.setDni(rs.getString("dni")); 
-                cliente.setName(rs.getString("nombre")); 
-                cliente.setApellido(rs.getString("apellido")); 
-                cliente.setFechaNacimineto(rs.getString("fechaNacimiento")); 
-                cliente.setNumTelf(rs.getString("numTelf")); 
-                cliente.setDireccion(rs.getString("direccion")); 
-                cliente.setFechaIngreso(rs.getString("fechaIngreso"));
-                cliente.setFechaUltMod(rs.getString("fechaUltMod"));
+                cliente.setDni(rs.getString("DNI")); 
+                cliente.setName(rs.getString("Nombre")); 
+                cliente.setApellido(rs.getString("Apellidos")); 
+                cliente.setNumTelf(rs.getString("Telefono")); 
+                cliente.setDireccion(rs.getString("Dirección")); 
+                cliente.setFechaIngreso(rs.getString("FechaIngreso"));
+                cliente.setFechaNacimineto(rs.getString("FechaNacimiento")); 
+                cliente.setFechaUltMod(rs.getString("FechaUltimaVisita"));
                 ArrayList<String> listaMascotas=new <String>ArrayList();
-                String stringMascotas=rs.getString("mascotas");
+                String stringMascotas=rs.getString("Mascotas");
                 String[] splitStringMascotas=stringMascotas.split(",");
                 for(int i=0;i<splitStringMascotas.length;i++){
                     listaMascotas.add(splitStringMascotas[i]);
                 }
                 cliente.setMascotas(listaMascotas);
+                cliente.setDeuda(rs.getFloat("Deuda"));
                 
                 
                 listaClientes.add(cliente);
@@ -80,14 +81,14 @@ public class ClienteDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (dni, nombre, apellido, fechaNacimiento, numTelef, direccion, fechaIngreso,fechaUltMod,mascotas) VALUES (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Dirección, FechaIngreso, FechaNacimiento, FechaUltimaVisita,Mascotas) VALUES (?,?,?,?,?,?,?,?,?)");
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
             st.setString(3, cliente.getApellido());
-            st.setString(4, cliente.getFechaNacimineto());
-            st.setString(5, cliente.getNumTelf());
-            st.setString(6, cliente.getDireccion()); 
-            st.setString(7, cliente.getFechaIngreso());
+            st.setString(4, cliente.getNumTelf());
+            st.setString(5, cliente.getDireccion()); 
+            st.setString(6, cliente.getFechaIngreso());
+            st.setString(7, cliente.getFechaNacimineto());
             st.setString(8, cliente.getFechaUltMod()); 
             List<String> listaMascotas=cliente.getMascotas();
             String stringListaMascotas="";
@@ -95,6 +96,7 @@ public class ClienteDAO extends ConexionBD {
                 stringListaMascotas=stringListaMascotas+mascotaAux+",";
             }
             st.setString(9,stringListaMascotas);
+            st.setFloat(10,cliente.getDeuda());
             st.executeUpdate();
             
         }catch(Exception e){

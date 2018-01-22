@@ -7,6 +7,9 @@ de la tabla Empleados.
 */
 
 public class Empleado{
+
+
+  
     
     public static enum TipoDeEmpleado{auxiliar, veterinario};
     
@@ -17,6 +20,7 @@ public class Empleado{
     private String numTelf;
     private String contrasena;
     private TipoDeEmpleado tipo;
+    private String cuentaBancaria;
     public Empleado(){
         //Se crea un constructor vacío, los datos se llenaran con setters
     }
@@ -55,6 +59,10 @@ public class Empleado{
     public String getContrasena() {
         return contrasena;
     }
+    public String getCuentaBancaria(){
+        return cuentaBancaria;
+    }
+    
      public void setDni(String dni) {
         this.dni = dni;
     }
@@ -75,6 +83,9 @@ public class Empleado{
     }
     public void setTipo(TipoDeEmpleado tipo){
         this.tipo = tipo;
+    }
+    public void setCuentaBancaria(String cuenta) {
+        this.cuentaBancaria=cuenta;
     }
 
 
