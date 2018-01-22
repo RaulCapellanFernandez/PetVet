@@ -14,7 +14,7 @@ Clase encargada de comunicar la base de datos con el codigo de dicha clase
 public class EmpleadoDAO extends ConexionBD {
     ArrayList<Empleado> listaEmpleados = new <Empleado>ArrayList(); 
 
-    static public List<Empleado> listar() throws Exception{
+    public List<Empleado> listar() throws Exception{
         
         
         try{

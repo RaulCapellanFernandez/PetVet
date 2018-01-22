@@ -37,7 +37,7 @@ CREATE TABLE clientes (
   FechaNacimiento varchar(45) NOT NULL,
   FechaUltimaVisita varchar(45) NOT NULL,
   Mascotas varchar(50) NOT NULL,
-  Deuda float(10clientes) NOT NULL,
+  Deuda float(10clinica) NOT NULL,
   PRIMARY KEY (DNI),
   UNIQUE KEY DNI_UNIQUE (DNI),
   UNIQUE KEY FechaUltimaVisita_UNIQUE (FechaUltimaVisita)
