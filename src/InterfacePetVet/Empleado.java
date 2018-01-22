@@ -133,7 +133,7 @@ public class Empleado extends javax.swing.JFrame {
         jLabel8.setText("Volver");
         jPanel_Volver.add(jLabel8);
 
-        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, -1));
+        jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, -1));
 
         jTextField9.setBackground(jPanel1.getBackground());
         jTextField9.setForeground(new java.awt.Color(240, 240, 240));
@@ -336,10 +336,19 @@ public class Empleado extends javax.swing.JFrame {
                 jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
                 jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
+<<<<<<< HEAD
                 if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
                     jComboBox2.setSelectedIndex(0);
                 }
                 else jComboBox2.setSelectedIndex(1);
+=======
+                
+                if(empleadoSeleccionado.getTipo().equalsIgnoreCase("auxiliar")){
+                    jComboBox2.add("Auxiliar", this);
+                }
+                else
+                    jComboBox2.add("Veterinario", this);
+>>>>>>> b4bdeda7767e6ed1c252a63f85dc3714974fb0a5
             }
         } catch (Exception ex) {
             System.out.println("Wops");

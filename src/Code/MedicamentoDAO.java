@@ -16,11 +16,13 @@ import java.util.List;
  * @author cp
  */
 public class MedicamentoDAO extends ConexionBD {
-     ArrayList<Medicamento> listaMedicamentos = new <Medicamento>ArrayList(); 
-
-    public List<Medicamento> listar() throws Exception{
+     public ArrayList<Medicamento> listaMedicamentos = new <Medicamento>ArrayList(); 
+     public MedicamentoDAO()throws Exception{
+         listar();
+     }
+    
         
-        
+    public void listar() throws Exception{    
         try{
             this.abrirConexion();
             //Cambiar esto segun la BBDD
@@ -49,7 +51,7 @@ public class MedicamentoDAO extends ConexionBD {
             throw new Exception("Listar medicamentos " + e.getMessage());
         }
 
-        return(listaMedicamentos);
+        return;
     }
     
     public void eliminar(Medicamento medicamento) throws Exception {
