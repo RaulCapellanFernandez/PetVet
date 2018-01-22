@@ -198,6 +198,11 @@ public class Empleado extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 102));
         jPanel5.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("Guardar");
@@ -331,6 +336,10 @@ public class Empleado extends javax.swing.JFrame {
                 jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
                 jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
+                if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
+                    jComboBox2.setSelectedIndex(0);
+                }
+                else jComboBox2.setSelectedIndex(1);
             }
         } catch (Exception ex) {
             System.out.println("Wops");
@@ -355,6 +364,36 @@ public class Empleado extends javax.swing.JFrame {
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        try {
+            //System.out.println("Quieres guardar un objeto!");
+            String nombreNuevo=jTextField8.getText();
+            EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
+            //System.out.println("Hay "+objetoEmpleadoDAO.listaEmpleados.size()+" empleados");
+            for(int i=0;i<objetoEmpleadoDAO.listaEmpleados.size();i++){
+                System.err.println("i es "+i);
+                if(String.valueOf(jComboBox1.getItemAt(i)).equals(nombreNuevo)){
+                    //System.out.println("Ese usuario ya existe, prueba con otro nombre");
+                    return; 
+                }
+                //else{
+                //    System.out.println("No es "+String.valueOf((jComboBox1.getItemAt(i))));
+                //}
+            }
+            Code.Empleado empleadoNuevo= new Code.Empleado();
+            empleadoNuevo.setName(nombreNuevo);
+            empleadoNuevo.setApellido(jTextField9.getText());
+            empleadoNuevo.setDni(jTextField10.getText());
+            empleadoNuevo.setNumTelf(jTextField11.getText());
+            empleadoNuevo.setContrasena(jTextField12.getText());
+            System.out.println("Vamos a registrar el objeto");
+            objetoEmpleadoDAO.registrar(empleadoNuevo);
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return;
+    }//GEN-LAST:event_jPanel5MouseClicked
 
     /**
      * @param args the command line arguments
