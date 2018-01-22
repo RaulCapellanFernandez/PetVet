@@ -336,19 +336,12 @@ public class Empleado extends javax.swing.JFrame {
                 jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
                 jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
-<<<<<<< HEAD
                 if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
                     jComboBox2.setSelectedIndex(0);
                 }
-                else jComboBox2.setSelectedIndex(1);
-=======
+                else 
+                    jComboBox2.setSelectedIndex(1);
                 
-                if(empleadoSeleccionado.getTipo().equalsIgnoreCase("auxiliar")){
-                    jComboBox2.add("Auxiliar", this);
-                }
-                else
-                    jComboBox2.add("Veterinario", this);
->>>>>>> b4bdeda7767e6ed1c252a63f85dc3714974fb0a5
             }
         } catch (Exception ex) {
             System.out.println("Wops");
@@ -396,6 +389,13 @@ public class Empleado extends javax.swing.JFrame {
             empleadoNuevo.setDni(jTextField10.getText());
             empleadoNuevo.setNumTelf(jTextField11.getText());
             empleadoNuevo.setContrasena(jTextField12.getText());
+            empleadoNuevo.setCuentaBancaria("Pendiente");
+            if(jComboBox2.getSelectedIndex()==0){
+                empleadoNuevo.setTipo("Auxiliar");
+            }
+            else{
+                empleadoNuevo.setTipo("Veterinario");
+            }
             System.out.println("Vamos a registrar el objeto");
             objetoEmpleadoDAO.registrar(empleadoNuevo);
         } catch (Exception ex) {

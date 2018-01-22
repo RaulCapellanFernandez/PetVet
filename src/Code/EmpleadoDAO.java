@@ -71,7 +71,8 @@ public class EmpleadoDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Contraseña, CuentaBancaria, Tipo) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Contraseña, CuentaBancaria, Tipo) VALUES (?,?,?,?,?,?,?);");
+            System.out.println("Vamos a registrar al empleado "+empleado.getName());
             st.setString(1, empleado.getDni());
             st.setString(2, empleado.getName()); 
             st.setString(3, empleado.getApellido());
@@ -79,6 +80,7 @@ public class EmpleadoDAO extends ConexionBD {
             st.setString(5, empleado.getContrasena());
             st.setString(6, empleado.getCuentaBancaria());
             st.setString(7, empleado.getTipo()); 
+            System.out.println(st);
             st.executeUpdate();
             
         }catch(Exception e){
