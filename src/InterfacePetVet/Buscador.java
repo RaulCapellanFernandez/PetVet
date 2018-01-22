@@ -56,7 +56,7 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Buscador.setText("Buscador :");
         jPanel2.add(jLabel_Buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        jPanel_Volver.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel_Volver.setBackground(new java.awt.Color(153, 51, 255));
         jPanel_Volver.setForeground(new java.awt.Color(240, 240, 240));
         jPanel_Volver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,6 +109,11 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Medicamento.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_medical_bag_white_18dp.png"))); // NOI18N
         jLabel_Medicamento.setText("Medicamentos");
+        jLabel_Medicamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_MedicamentoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,6 +183,12 @@ public class Buscador extends javax.swing.JFrame {
         vCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel_ClienteMouseClicked
+
+    private void jLabel_MedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MedicamentoMouseClicked
+        Medicina vMedicina = new Medicina();
+        vMedicina.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel_MedicamentoMouseClicked
 
     /**
      * @param args the command line arguments
