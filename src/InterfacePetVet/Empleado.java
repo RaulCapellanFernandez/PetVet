@@ -336,27 +336,14 @@ public class Empleado extends javax.swing.JFrame {
                 jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
                 jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
                 jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
-<<<<<<< HEAD
+
                 if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
                     jComboBox2.setSelectedIndex(0);
                 }
                 else 
                     jComboBox2.setSelectedIndex(1);
                 
-=======
 
-                if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
-                    jComboBox2.setSelectedIndex(0);
-                }
-
-                
-                if(empleadoSeleccionado.getTipo().equalsIgnoreCase("auxiliar")){
-                    jComboBox2.add("Auxiliar", this);
-                }
-                else
-                    jComboBox2.add("Veterinario", this);
-
->>>>>>> 82d43664d62377b77fb4c2632e55e2417a101700
             }
         } catch (Exception ex) {
             System.out.println("Wops");
