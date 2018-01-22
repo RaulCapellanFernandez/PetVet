@@ -14,13 +14,15 @@ import java.util.List;
 
 /**
  *
- * @author cp
+ *
  */
 public class ClienteDAO extends ConexionBD {
-     public List<Cliente> listar() throws Exception{
-        
-        ArrayList<Cliente> listaClientes = new <Cliente>ArrayList(); 
-
+    public ArrayList<Cliente> listaClientes = new <Cliente>ArrayList(); 
+    public ClienteDAO() throws Exception{
+        listar();
+    }
+    
+    public void listar() throws Exception{
         try{
             this.abrirConexion();
             //Cambiar esto segun la BBDD
@@ -42,10 +44,6 @@ public class ClienteDAO extends ConexionBD {
                 for(int i=0;i<splitStringMascotas.length;i++){
                     listaMascotas.add(splitStringMascotas[i]);
                 }
-                cliente.setMascotas(listaMascotas);
-                cliente.setDeuda(rs.getFloat("Deuda"));
-                
-                
                 listaClientes.add(cliente);
             }
             this.cerrarConexion(); 
@@ -54,8 +52,10 @@ public class ClienteDAO extends ConexionBD {
             throw new Exception("Listar clientes " + e.getMessage());
         }
 
-        return(listaClientes);
+        return;
+    
     }
+        
     
     public void eliminar(Cliente cliente) throws Exception {
         try{

@@ -5,6 +5,10 @@
  */
 package InterfacePetVet;
 
+import Code.ClienteDAO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,6 +62,8 @@ public class Cliente extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +108,11 @@ public class Cliente extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 102));
         jPanel5.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("Cargar");
@@ -198,8 +209,20 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         jLabel5.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel5.setText("Guardar-Mascotas");
+        jLabel5.setText("Guardar");
         jPanel3.add(jLabel5);
+
+        jPanel6.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel6.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+        });
+
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("Mascotas");
+        jPanel6.add(jLabel9);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,7 +251,9 @@ public class Cliente extends javax.swing.JFrame {
                             .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -266,7 +291,9 @@ public class Cliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -321,9 +348,8 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        Mascota vMascota = new Mascota();
-        vMascota.setVisible(true);
-        dispose();
+ 
+        
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_VolverMouseClicked
@@ -331,6 +357,47 @@ public class Cliente extends javax.swing.JFrame {
         vBuscador.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel_VolverMouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+       Mascota vMascota = new Mascota();
+        vMascota.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+       try {
+            List<Code.Cliente> listaClientes;
+            Code.Cliente clienteSeleccionado=new Code.Cliente();
+            clienteSeleccionado.setName("Ninguno");
+            ClienteDAO objetoClienteDAO=new ClienteDAO();
+            listaClientes=objetoClienteDAO.listaClientes;
+            String nombreClienteSeleccionado=String.valueOf(jComboBox1.getSelectedItem());;
+            for(Code.Cliente empleadoAux : listaClientes){
+                if(empleadoAux.getName().equals(nombreClienteSeleccionado)){
+                        clienteSeleccionado=empleadoAux;
+                }
+                else{
+                    //System.out.println("No es "+empleadoAux.getName());
+                }
+            }
+            if(clienteSeleccionado.getName().equals("Ninguno")){
+                //System.out.println("Ese usuario, "+nombreEmpleadoSeleccionado+" no existe!");
+                return;
+            }
+            else{
+                //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
+                jTextField8.setText("Nombre: "+clienteSeleccionado.getName());
+                jTextField9.setText("Apellido/s: "+clienteSeleccionado.getApellido());
+                jTextField10.setText("DNI: "+clienteSeleccionado.getDni());
+                jTextField11.setText("Telefono: "+clienteSeleccionado.getNumTelf());
+                jTextField12.setText("Contraseña: "+clienteSeleccionado.getFechaNacimineto());
+                jTextField13.setText("Contraseña: "+clienteSeleccionado.getDireccion());
+            }
+        } catch (Exception ex) {
+            System.out.println("Wops");
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -377,11 +444,13 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel_Volver;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;

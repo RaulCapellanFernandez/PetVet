@@ -79,6 +79,11 @@ public class Empleado extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 102));
         jPanel3.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(240, 240, 240));
         jLabel5.setText("Cargar");
@@ -346,6 +351,10 @@ public class Empleado extends javax.swing.JFrame {
         vBuscador.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel_VolverMouseClicked
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseClicked
 
     /**
      * @param args the command line arguments
