@@ -205,8 +205,10 @@ public class Loggin extends javax.swing.JFrame {
             i=0;
             for(String dniAux : dniAuxiliares){
                 if(dniAux.equals(DNILoggin)){
-                    if(passwordsAuxiliares.get(i).equals(PassLoggin)){
-                        JOptionPane.showMessageDialog(this,"No tienes permiso para entrar (Por implementar).");
+                    if(passwordsAuxiliares.get(i).equals(PassLoggin)){ 
+                        BuscadorAuxiliar vBuscador = new BuscadorAuxiliar();
+                        vBuscador.setVisible(true);
+                        dispose();
                         return;
                     }
                 }
