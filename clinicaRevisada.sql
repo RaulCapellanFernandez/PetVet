@@ -36,8 +36,8 @@ CREATE TABLE clientes (
   FechaIngreso varchar(45) NOT NULL,
   FechaNacimiento varchar(45) NOT NULL,
   FechaUltimaVisita varchar(45) NOT NULL,
-  Mascotas varchar(200) NOT NULL,
-  Deuda float(10clinicaclientes) NOT NULL,
+  Mascotas varchar(50) NOT NULL,
+  Deuda float(10clientes) NOT NULL,
   PRIMARY KEY (DNI),
   UNIQUE KEY DNI_UNIQUE (DNI),
   UNIQUE KEY FechaUltimaVisita_UNIQUE (FechaUltimaVisita)
@@ -51,6 +51,7 @@ CREATE TABLE mascotas (
   DNICliente varchar(15) NOT NULL,
   Peso float(5) NOT NULL,
   Edad int(11) NOT NULL,
+  Especie char(40) NOT NULL,
   PRIMARY KEY (NumeroChip),
   UNIQUE KEY NumeroChip_UNIQUE (NumeroChip),
   KEY DNICliente_idx (DNICliente),
@@ -60,7 +61,7 @@ CREATE TABLE mascotas (
 CREATE TABLE medicamentos (
   CodigoMedicamento int(11) NOT NULL,
   NombreTecnico varchar(50) NOT NULL,
-  CantidadMedicamento varchar(45) NOT NULL,
+  CantidadMedicamento int(11) NOT NULL,
   PrincipiosActivos varchar(45) NOT NULL,
   PRIMARY KEY (CodigoMedicamento),
   UNIQUE KEY CodigoMedicamento_UNIQUE (CodigoMedicamento),
@@ -104,3 +105,17 @@ CREATE TABLE mascomedicaveter (
   CONSTRAINT Medicamento FOREIGN KEY (CodigoMedicamento) REFERENCES medicamentos (CodigoMedicamento) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT Veterinario FOREIGN KEY (DNIVeterinario) REFERENCES veterinario (DNIVeterinarioauxclien) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ;
+
+INSERT INTO empleados VALUES('77777777A', 'Rafa', 'Mejido', 999888777, 'alpaca',444433322, 'Veterinario');
+INSERT INTO empleados VALUES('88888888B', 'Josefa', 'J. ', 666555444, 'remo',555553331, 'Auxiliar');
+INSERT INTO empleados VALUES('99999999C', 'Ramon', 'Smith', 333222111, 'ramon', 666666122, 'Auxiliar');
+
+INSERT INTO clientes VALUES('12312312D', 'Ernesto', ' ', 987987654, 'Calle arriba', '01-01-11', '02-02-89', '03-01-18', '9999, 8888', 0);
+INSERT INTO clientes VALUES('32132321E', 'Marta', ' ', 789786721, 'Calle abajo', '10-02-11', '05-12-72', '04-01-18', '1111', 10);
+
+INSERT INTO mascotas VALUES('9999', 'Bruno', 'Hospitalizado', 'Mastin Leonés', '12312312D', 100, 6, 'Perro');
+INSERT INTO mascotas VALUES('8888', 'Agata', 'Sano', 'Persa', '12312312D', 4, 3, 'Gato');
+INSERT INTO mascotas VALUES('7777', 'Mimi', 'Tratamiento', 'Africano', '32132321E', 1, 1, 'Erizo');
+
+INSERT INTO medicamentos VALUES('6666', 'Alprazolam', 20, 'A12, B2, C14');
+INSERT INTO medicamentos VALUES('5555', 'Reinumol', 5, 'B2, D1');

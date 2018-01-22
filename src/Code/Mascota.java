@@ -15,6 +15,7 @@ public class Mascota{
     private int numChip;
     private String nombre;
     private String raza;
+    private String especie;
     private TipoDeMascota tipo;
     private float peso;
     private int edad;
@@ -56,6 +57,9 @@ public class Mascota{
     public int getEdad(){
         return edad;
     }
+    public String getEspecie(){
+        return especie;
+    }
 
     public void setDniCliente(String dniCliente) {
         this.dniCliente = dniCliente;
@@ -81,6 +85,9 @@ public class Mascota{
     }
     public void setEdad(int edad){
         this.edad=edad;
+    }
+    public void setEspecie(String especie){
+        this.especie=especie;
     }
     
 }

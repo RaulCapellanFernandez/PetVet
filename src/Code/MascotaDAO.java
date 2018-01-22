@@ -34,6 +34,7 @@ public class MascotaDAO extends ConexionBD {
                 mascota.setDniCliente(rs.getString("DNICliente"));
                 mascota.setPeso(rs.getFloat("Peso"));
                 mascota.setEdad(rs.getInt("Edad"));
+                mascota.setEspecie(rs.getString("Especie"));
             }
             this.cerrarConexion();
             
@@ -69,7 +70,7 @@ public class MascotaDAO extends ConexionBD {
             cn=this.getConexion();
             
             PreparedStatement st=this.getConexion().prepareStatement(
-                    "INSERT INTO mascotas (NumeroChip, Nombre, TipoMascota, Raza, DNICliente, Peso, Edad) VALUES (?,?,?,?,?,?,?)");
+                    "INSERT INTO mascotas (NumeroChip, Nombre, TipoMascota, Raza, DNICliente, Peso, Edad, Especie) VALUES (?,?,?,?,?,?,?,?)");
             st.setInt(1, mascota.getNumChip()); 
             st.setString(2, mascota.getNombre());
             st.setString(3, String.valueOf(mascota.getTipo()));
@@ -77,6 +78,7 @@ public class MascotaDAO extends ConexionBD {
             st.setString(5, mascota.getDniCliente());
             st.setFloat(6, mascota.getPeso()); 
             st.setInt(7, mascota.getEdad());
+            st.setString(8, mascota.getEspecie());
             
             st.executeUpdate();
         }catch(Exception e){
