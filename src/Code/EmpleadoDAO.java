@@ -38,6 +38,7 @@ public class EmpleadoDAO extends ConexionBD {
                 listaEmpleados.add(empleado);
             }
             System.out.println("Cierro la conexion");
+            System.out.println(st);
             this.cerrarConexion(); 
 
         }catch (Exception e){
@@ -78,7 +79,7 @@ public class EmpleadoDAO extends ConexionBD {
             st.setString(3, empleado.getApellido());
             st.setString(4, empleado.getNumTelf());
             st.setString(5, empleado.getContrasena());
-            st.setString(6, empleado.getCuentaBancaria());
+            st.setInt(6, 1);
             st.setString(7, empleado.getTipo()); 
             System.out.println(st);
             st.executeUpdate();

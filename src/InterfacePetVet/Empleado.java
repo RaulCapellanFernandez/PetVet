@@ -391,7 +391,6 @@ public class Empleado extends javax.swing.JFrame {
             empleadoNuevo.setDni(jTextField10.getText());
             empleadoNuevo.setNumTelf(jTextField11.getText());
             empleadoNuevo.setContrasena(jTextField12.getText());
-            empleadoNuevo.setCuentaBancaria("Pendiente");
             if(jComboBox2.getSelectedIndex()==0){
                 empleadoNuevo.setTipo("Auxiliar");
             }
