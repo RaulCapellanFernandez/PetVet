@@ -55,11 +55,6 @@ public class Calculadora extends javax.swing.JFrame {
         jComboBox_Medicamento = new javax.swing.JComboBox<>();
         jLabel51 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
-        jSeparator24 = new javax.swing.JSeparator();
-        jTextField17 = new javax.swing.JTextField();
-        jSeparator25 = new javax.swing.JSeparator();
-        jTextField_Contradicciones = new javax.swing.JTextField();
-        jSeparator17 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jSeparator26 = new javax.swing.JSeparator();
         jTextField_Resultado = new javax.swing.JTextField();
@@ -109,12 +104,10 @@ public class Calculadora extends javax.swing.JFrame {
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel43.setText("Seleccionar Medic.");
         jPanel16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel44.setText("Seleccionar P.A.");
         jPanel16.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -197,31 +190,9 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
         jPanel16.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 210, -1));
-        jPanel16.add(jSeparator24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 210, 10));
-
-        jTextField17.setForeground(new java.awt.Color(240, 240, 240));
-        jTextField17.setBorder(null);
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
-            }
-        });
-        jPanel16.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 160, -1));
-        jPanel16.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 200, 5));
-
-        jTextField_Contradicciones.setForeground(new java.awt.Color(240, 240, 240));
-        jTextField_Contradicciones.setBorder(null);
-        jTextField_Contradicciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ContradiccionesActionPerformed(evt);
-            }
-        });
-        jPanel16.add(jTextField_Contradicciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 160, -1));
-        jPanel16.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 200, 5));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel16.setText("Contradicciones");
         jPanel16.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, 20));
         jPanel16.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 210, 10));
 
@@ -274,15 +245,15 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,7 +264,7 @@ public class Calculadora extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -302,14 +273,6 @@ public class Calculadora extends javax.swing.JFrame {
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         JOptionPane.showMessageDialog(this,"Seleccionar un cliente una mascota y un medicamento y presionar calcular");
     }//GEN-LAST:event_jPanel4MouseClicked
-
-    private void jTextField_ContradiccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ContradiccionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ContradiccionesActionPerformed
-
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
 
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
@@ -401,21 +364,16 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel_Volver;
-    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator22;
     private javax.swing.JSeparator jSeparator23;
-    private javax.swing.JSeparator jSeparator24;
-    private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField_Contradicciones;
     private javax.swing.JTextField jTextField_Edad;
     private javax.swing.JTextField jTextField_Resultado;
     // End of variables declaration//GEN-END:variables
