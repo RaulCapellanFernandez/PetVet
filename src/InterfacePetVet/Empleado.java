@@ -490,7 +490,7 @@ public class Empleado extends javax.swing.JFrame {
             else{
                 empleadoModificar.setTipo("Veterinario");
             }
-            System.out.println("Vamos a Modificar el objeto");
+            System.out.println("Vamos a Modificar el objeto ");
             objetoEmpleadoDAO.modificar(empleadoModificar);
             recarga();
            

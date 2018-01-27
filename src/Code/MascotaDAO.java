@@ -72,6 +72,42 @@ public class MascotaDAO extends ConexionBD {
             } 
         }   
     }
+    public void modificar(Mascota mascota, String DNIMod)throws Exception{
+        try {
+            Connection cn;
+            this.abrirConexion();
+            cn=this.getConexion();
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE mascotas SET NumeroChip = ?, Nombre = ?, TipoMascota = ?, Raza = ?, DNICliente = ?, Peso = ?, Edad=?, Especie=? WHERE NumeroChip = ?");
+            System.out.println("Modificar la mascota "+DNIMod);
+            
+            st.setInt(1, mascota.getNumChip());
+            st.setString(2, mascota.getNombre()); 
+            st.setString(3, mascota.getTipo());
+            st.setString(4, mascota.getRaza());
+            st.setString(5, mascota.getDniCliente());
+            st.setFloat(6, mascota.getPeso());
+            st.setInt(7, mascota.getEdad()); 
+            st.setString(8, mascota.getEspecie());
+            st.setString(9, DNIMod);
+            st.executeUpdate();
+            
+                    
+        } catch (Exception e) {
+            throw new Exception("modificar empleado " + e.getMessage()); 
+        }
+        finally{
+            try{
+                
+                this.cerrarConexion();
+            }catch (Exception e){
+                throw new Exception("Cerrar conexión modificar empleado " + e.getMessage()); 
+            }
+        }
+            
+    }
+    
+    
+    
     
     public void registrar(Mascota mascota) throws Exception{
         
