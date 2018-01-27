@@ -112,7 +112,7 @@ public class EmpleadoDAO extends ConexionBD {
             st.setString(3, empleado.getApellido());
             st.setString(4, empleado.getNumTelf());
             st.setString(5, empleado.getContrasena());
-            st.setString(6, empleado.getCuentaBancaria());
+            st.setInt(6, 10);
             st.setString(7, empleado.getTipo()); 
             st.setString(8, empleado.getDni());
             System.out.println(st);

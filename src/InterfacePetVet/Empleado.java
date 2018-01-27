@@ -21,10 +21,16 @@ public class Empleado extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
+    public ArrayList<Code.Empleado>listaEmpleados;
+    public EmpleadoDAO empDAO;
+    
     public Empleado() throws Exception {
         initComponents();
         jPanel6.setVisible(false);
         jPanel7.setVisible(false);
+        empDAO=new EmpleadoDAO();
+        listaEmpleados=empDAO.listaEmpleados;
+        recarga();
         //rellenarComboBox();
        
     }
@@ -48,10 +54,12 @@ public class Empleado extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelRecarga = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel_Volver = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jSeparator10 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
         jSeparator12 = new javax.swing.JSeparator();
@@ -128,19 +136,19 @@ public class Empleado extends javax.swing.JFrame {
         });
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 180, -1));
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 255));
-        jPanel4.setForeground(new java.awt.Color(240, 240, 240));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanelRecarga.setBackground(new java.awt.Color(255, 102, 102));
+        jPanelRecarga.setForeground(new java.awt.Color(240, 240, 240));
+        jPanelRecarga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
+                jPanelRecargaMouseClicked(evt);
             }
         });
 
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel6.setText("Ayuda");
-        jPanel4.add(jLabel6);
+        jLabel6.setText("Recargar");
+        jPanelRecarga.add(jLabel6);
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
+        jPanel2.add(jPanelRecarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 70, -1));
 
         jPanel_Volver.setBackground(new java.awt.Color(153, 51, 255));
         jPanel_Volver.setForeground(new java.awt.Color(240, 240, 240));
@@ -155,6 +163,20 @@ public class Empleado extends javax.swing.JFrame {
         jPanel_Volver.add(jLabel8);
 
         jPanel2.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, -1));
+
+        jPanel8.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel8.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel11.setText("Ayuda");
+        jPanel8.add(jLabel11);
+
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 70, -1));
 
         jTextField9.setBackground(jPanel1.getBackground());
         jTextField9.setForeground(new java.awt.Color(240, 240, 240));
@@ -350,13 +372,13 @@ public class Empleado extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    //CARGAR empleado
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         try {
             jPanel6.setVisible(true);
             jPanel7.setVisible(true);
             jPanel5.setVisible(false);
-            List<Code.Empleado> listaEmpleados;
+            //List<Code.Empleado> listaEmpleados;
             Code.Empleado empleadoSeleccionado=new Code.Empleado();
             empleadoSeleccionado.setName("Ninguno");
             EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
@@ -401,9 +423,10 @@ public class Empleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        JOptionPane.showMessageDialog(this,"Seleccionar cargar para cargar los datos de un usuario o \n rellena los datos para guardar un nuevo empleado");
-    }//GEN-LAST:event_jPanel4MouseClicked
+    //RECARGAR EMPLEADOSe recarga la información
+    private void jPanelRecargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRecargaMouseClicked
+        recarga();
+    }//GEN-LAST:event_jPanelRecargaMouseClicked
 
     private void jPanel_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_VolverMouseClicked
         Buscador vBuscador = new Buscador();
@@ -415,21 +438,17 @@ public class Empleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseClicked
 
+    //GUARDAR EMPLEADO Click en guardar
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         try {
-            //System.out.println("Quieres guardar un objeto!");
             String nombreNuevo=jTextField8.getText();
             EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
-            //System.out.println("Hay "+objetoEmpleadoDAO.listaEmpleados.size()+" empleados");
             for(int i=0;i<objetoEmpleadoDAO.listaEmpleados.size();i++){
-                System.err.println("i es "+i);
+                //System.err.println("i es "+i);
                 if(String.valueOf(jComboBox1.getItemAt(i)).equals(nombreNuevo)){
-                    //System.out.println("Ese usuario ya existe, prueba con otro nombre");
+                    //System.out.println("Ese empleado ya existe, prueba con otro nombre");
                     return; 
                 }
-                //else{
-                //    System.out.println("No es "+String.valueOf((jComboBox1.getItemAt(i))));
-                //}
             }
             Code.Empleado empleadoNuevo= new Code.Empleado();
             empleadoNuevo.setName(nombreNuevo);
@@ -445,13 +464,14 @@ public class Empleado extends javax.swing.JFrame {
             }
             System.out.println("Vamos a registrar el objeto");
             objetoEmpleadoDAO.registrar(empleadoNuevo);
+            recarga();
             //jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         return;
     }//GEN-LAST:event_jPanel5MouseClicked
-
+    //MODIFICAR EMPLEADO
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         try{
             String nombreNuevo=jTextField8.getText();
@@ -477,7 +497,7 @@ public class Empleado extends javax.swing.JFrame {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel6MouseClicked
-
+    //BORRAR EMPLEADO
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         try{
             String nombreNuevo=jTextField8.getText();
@@ -498,6 +518,10 @@ public class Empleado extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -543,6 +567,7 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -553,10 +578,11 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanelRecarga;
     private javax.swing.JPanel jPanel_Volver;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -571,6 +597,22 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void recarga() {
+       try {
+            Code.EmpleadoDAO empleadoDAO = new Code.EmpleadoDAO();
+            ArrayList<Code.Empleado> listaEmpleadosNueva=empleadoDAO.listaEmpleados;
+            listaEmpleados=listaEmpleadosNueva;
+            jComboBox1.removeAllItems();
+            for(Code.Empleado aux : listaEmpleados){
+                jComboBox1.addItem(aux.getName());       
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 /*private void rellenarComboBox() throws Exception {
        ArrayList<Code.Empleado> listaEmpleados = new <Code.Empleado>ArrayList();
        EmpleadoDAO lista = new EmpleadoDAO();
