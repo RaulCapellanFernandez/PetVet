@@ -35,7 +35,6 @@ public class MedicamentoDAO extends ConexionBD {
                 medicamento.setCodigoMedicamento(rs.getInt("CodigoMedicamento")); 
                 medicamento.setNombreTecnico(rs.getString("NombreTecnico")); 
                 medicamento.setCantidadMedicamento(rs.getInt("CantidadMedicamento")); 
-               
                 ArrayList<String> listaPrincipiosActivos=new <String>ArrayList();
                 String stringPrincipiosActivos=rs.getString("PrincipiosActivos");
                 String[] splitStringPrincipiosActivos=stringPrincipiosActivos.split(",");
@@ -43,9 +42,7 @@ public class MedicamentoDAO extends ConexionBD {
                     listaPrincipiosActivos.add(splitStringPrincipiosActivos[i]);
                 }
                 medicamento.setPrincipiosActivos(listaPrincipiosActivos);
-               // System.err.println("Añado "+medicamento.getNombreTecnico());
-               // System.err.println("Añado "+medicamento.getCantidadMedicamento());
-               // System.err.println("Añado "+medicamento.getPrincipiosActivos());
+                
                 
                 listaMedicamentos.add(medicamento);
             }
@@ -112,20 +109,15 @@ public class MedicamentoDAO extends ConexionBD {
             Connection cn;
             this.abrirConexion();
             cn=this.getConexion();
-            System.err.println("El medicamento que vamos a editar:");
-            System.err.println(medicamento.getNombreTecnico());
-            System.err.println(medicamento.getCodigoMedicamento());
-            System.err.println(medicamento.getCantidadMedicamento());
-            System.err.println(medicamento.getPrincipiosActivos());
             
             PreparedStatement st = this.getConexion().prepareStatement("UPDATE medicamentos SET CodigoMedicamento = ?, NombreTecnico = ?, CantidadMedicamento = ?, PrincipiosActivos = ? WHERE CodigoMedicamento = ?");
             System.out.println("Modificar el empleado");
             st.setInt(1, medicamento.getCodigoMedicamento());
             st.setString(2, medicamento.getNombreTecnico()); 
             st.setInt(3, medicamento.getCantidadMedicamento());
-            //String prueba = String.join("", medicamento.getPrincipiosActivos());
+            String prueba = String.join("", medicamento.getPrincipiosActivos());
             
-            st.setString(4, medicamento.getPrincipiosActivosString());
+            st.setString(4, prueba);
            
             st.setInt(5, medicamento.getCodigoMedicamento());
             System.out.println(st);

@@ -417,9 +417,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel9MouseClicked"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
