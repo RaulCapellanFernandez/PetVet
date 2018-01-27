@@ -531,7 +531,6 @@ public class Medicina extends javax.swing.JFrame {
        for(int i = 0; i< listaMedicamentos.size()/2; i++){
            jComboBox1.addItem(String.valueOf(listaMedicamentos.get(i).getNombreTecnico()));
        }
+       
     }
-    
-    
 }
