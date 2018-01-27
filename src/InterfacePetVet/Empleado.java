@@ -492,6 +492,7 @@ public class Empleado extends javax.swing.JFrame {
             }
             System.out.println("Vamos a Modificar el objeto");
             objetoEmpleadoDAO.modificar(empleadoModificar);
+            recarga();
            
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);

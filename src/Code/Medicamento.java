@@ -39,6 +39,16 @@ public class Medicamento{
     public ArrayList<String> getPrincipiosActivos() {
         return principiosActivos;
     }
+    public String getPrincipiosActivosString(){
+        String lista="";
+        for(String aux : principiosActivos){
+           lista=lista+aux+",";  
+        }
+        
+    
+        
+        return lista;
+    }
 
     public void setCodigoMedicamento(int codigoMedicamento) {
         this.codigoMedicamento = codigoMedicamento;
