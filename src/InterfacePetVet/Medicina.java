@@ -20,20 +20,15 @@ import javax.swing.JOptionPane;
  * @author CP
  */
 public class Medicina extends javax.swing.JFrame {
-    
-    public ArrayList<Code.Medicamento> listaMedicinas;
-    public MedicamentoDAO medDAO;
+
     /**
      * Creates new form Medicina
      */
     public Medicina() throws Exception {
         initComponents();
-        //rellenarComboBox();
+        rellenarComboBox();
         jPanel6.setVisible(false);
         jPanel7.setVisible(false);
-        medDAO=new MedicamentoDAO();
-        listaMedicinas=medDAO.listaMedicamentos;
-        recarga();
     }
 
     /**
@@ -212,11 +207,6 @@ public class Medicina extends javax.swing.JFrame {
 
         jLabel9.setForeground(new java.awt.Color(240, 240, 240));
         jLabel9.setText("Modificar");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
         jPanel6.add(jLabel9);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 51));
@@ -343,7 +333,7 @@ public class Medicina extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-    //Cargar medicamento
+
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
        jPanel6.setVisible(true);
        jPanel7.setVisible(true);
@@ -359,10 +349,12 @@ public class Medicina extends javax.swing.JFrame {
                 if(medicamentoAux.getNombreTecnico().equals(nombreMedicamentoSeleccionado)){
                         medicamentoSeleccionado=medicamentoAux;
                 }
-               
+                else{
+                    //System.out.println("No es "+empleadoAux.getName());
+                }
             }
             if(medicamentoSeleccionado.getNombreTecnico().equals("Ninguno")){
-                //System.out.println("Ese medicamento no existe!");
+                //System.out.println("Ese usuario, "+nombreEmpleadoSeleccionado+" no existe!");
                 return;
             }
             else{
@@ -378,31 +370,34 @@ public class Medicina extends javax.swing.JFrame {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel3MouseClicked
-    
-    //MODIFICAR
+
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         try{
-            String nombreMedic=jTextField8.getText();
+            String codigoNuevo=jTextField8.getText();
             MedicamentoDAO objetoMedicamentoDAO=new MedicamentoDAO();
+            Medicamento lista = new Medicamento();
             
-            Code.Medicamento medicamentoModificar=new Code.Medicamento();
-            medicamentoModificar.setCodigoMedicamento(Integer.parseInt(jTextField9.getText()));
-            medicamentoModificar.setNombreTecnico(nombreMedic);
-            medicamentoModificar.setCantidadMedicamento(Integer.parseInt(jTextField10.getText()));
+            ArrayList<String> listaMedicamentos = new ArrayList<String>();
+            listaMedicamentos.add(jTextField12.getText());
+            System.out.println(jTextField12.getText());
             
-            ArrayList<String> listaPrincipios=new <String>ArrayList();
-            String[] splittedString=jTextField12.getText().split(",");
-            for(int i=0;i<splittedString.length;i++){
-                listaPrincipios.add(splittedString[i]);
-            }
-            medicamentoModificar.setPrincipiosActivos(listaPrincipios);
+            int codigo = Integer.parseInt(jTextField8.getText());
+            int cantidad = Integer.parseInt(jTextField10.getText());
+            
+            Medicamento medicamentoModificar= new Medicamento();
+            medicamentoModificar.setCodigoMedicamento(codigo);
+            medicamentoModificar.setNombreTecnico(jTextField9.getText());
+            medicamentoModificar.setCantidadMedicamento(cantidad);
+            medicamentoModificar.setPrincipiosActivos(listaMedicamentos);
+            
             System.out.println("Vamos a Modificar el objeto");
             objetoMedicamentoDAO.modificar(medicamentoModificar);
+           
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel6MouseClicked
-    //
+
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         try{
             String codigoNuevo=jTextField8.getText();
@@ -458,10 +453,6 @@ public class Medicina extends javax.swing.JFrame {
         }
         return;
     }//GEN-LAST:event_jPanel5MouseClicked
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -532,30 +523,14 @@ public class Medicina extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
-    /*private void rellenarComboBox() throws Exception {
+    private void rellenarComboBox() throws Exception {
        List<Medicamento> listaMedicamentos;
        MedicamentoDAO lista = new MedicamentoDAO();
        listaMedicamentos = lista.listar();
-       jComboBox1.removeAllItems();
-       // System.err.println(listaMedicamentos.size());
+       
        for(int i = 0; i< listaMedicamentos.size()/2; i++){
            jComboBox1.addItem(String.valueOf(listaMedicamentos.get(i).getNombreTecnico()));
        }
        
-    } */
-    private void recarga() {
-       try {
-            Code.MedicamentoDAO medicamentoDAO = new Code.MedicamentoDAO();
-            ArrayList<Code.Medicamento> listaMedicinaNueva=medicamentoDAO.listaMedicamentos;
-            listaMedicinas=listaMedicinaNueva;
-            jComboBox1.removeAllItems();
-            for(Code.Medicamento aux : listaMedicinas){
-                jComboBox1.addItem(aux.getNombreTecnico());       
-            }
-            
-        } catch (Exception ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
 }

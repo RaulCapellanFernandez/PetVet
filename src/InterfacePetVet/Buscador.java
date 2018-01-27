@@ -185,7 +185,12 @@ public class Buscador extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_EmpleadoMouseClicked
 
     private void jLabel_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ClienteMouseClicked
-        Cliente vCliente = new Cliente();
+        Cliente vCliente = null;
+        try {
+            vCliente = new Cliente();
+        } catch (Exception ex) {
+            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         vCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel_ClienteMouseClicked

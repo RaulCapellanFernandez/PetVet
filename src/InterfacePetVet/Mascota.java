@@ -5,6 +5,9 @@
  */
 package InterfacePetVet;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author CP
@@ -286,7 +289,12 @@ public class Mascota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jPanel_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_VolverMouseClicked
-        Cliente vCliente = new Cliente();
+        Cliente vCliente = null;
+        try {
+            vCliente = new Cliente();
+        } catch (Exception ex) {
+            Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
         vCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel_VolverMouseClicked
