@@ -21,7 +21,7 @@ public class Empleado extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
-    public ArrayList<Code.Empleado>listaEmpleados;
+    public ArrayList<Code.Empleado> listaEmpleados;
     public EmpleadoDAO empDAO;
     
     public Empleado() throws Exception {

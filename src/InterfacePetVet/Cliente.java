@@ -6,6 +6,7 @@
 package InterfacePetVet;
 
 import Code.ClienteDAO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,8 +21,14 @@ public class Cliente extends javax.swing.JFrame {
     /**
      * Creates new form Cliente
      */
-    public Cliente() {
+    public ArrayList<Code.Cliente> listaClientes;
+    public ClienteDAO cliDAO;
+    public Cliente() throws Exception{
         initComponents();
+        cliDAO=new ClienteDAO();
+        listaClientes=cliDAO.listaClientes;
+        jComboBox2.removeAllItems();
+        recargar();
     }
 
     /**
@@ -348,15 +355,12 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -460,7 +464,8 @@ public class Cliente extends javax.swing.JFrame {
         vMascota.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
-
+    
+    //CARGAR
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
        try {
             List<Code.Cliente> listaClientes;
@@ -469,6 +474,8 @@ public class Cliente extends javax.swing.JFrame {
             ClienteDAO objetoClienteDAO=new ClienteDAO();
             listaClientes=objetoClienteDAO.listaClientes;
             String nombreClienteSeleccionado=String.valueOf(jComboBox1.getSelectedItem());;
+           
+            
             for(Code.Cliente empleadoAux : listaClientes){
                 if(empleadoAux.getName().equals(nombreClienteSeleccionado)){
                         clienteSeleccionado=empleadoAux;
@@ -482,13 +489,33 @@ public class Cliente extends javax.swing.JFrame {
                 return;
             }
             else{
+                System.err.println("Hasta aqui bien");
                 //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
                 jTextField8.setText(clienteSeleccionado.getName());
+               // System.err.println("Tiene nombre: "+clienteSeleccionado.getName());
                 jTextField9.setText(clienteSeleccionado.getApellido());
+                //System.err.println("Tiene apellido: "+clienteSeleccionado.getApellido());
                 jTextField10.setText(clienteSeleccionado.getDni());
+                //System.err.println("Tiene DNI: "+clienteSeleccionado.getDni());
                 jTextField11.setText(clienteSeleccionado.getNumTelf());
+                //System.err.println("Tiene numTelf: "+clienteSeleccionado.getNumTelf());
                 jTextField12.setText(clienteSeleccionado.getFechaNacimineto());
+                //System.err.println("Tiene Fecha"+clienteSeleccionado.getFechaNacimineto());
                 jTextField13.setText(clienteSeleccionado.getDireccion());
+                //System.err.println("Tiene Diri"+clienteSeleccionado.getDireccion());
+                List<String> mascotas=clienteSeleccionado.getMascotas();
+                System.err.println("Sus mascotas "+clienteSeleccionado.getMascotas());
+                jComboBox2.removeAllItems();
+                if(mascotas.isEmpty()){
+                    
+                }
+                else{
+                    for(String aux : mascotas){
+                        jComboBox2.addItem(aux);
+                    }
+                }
+                
+                
                 
             }
         } catch (Exception ex) {
@@ -534,7 +561,11 @@ public class Cliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cliente().setVisible(true);
+                try {
+                    new Cliente().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -582,4 +613,20 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void recargar() {
+       try{
+        Code.ClienteDAO clienteDAO = new Code.ClienteDAO();
+        ArrayList<Code.Cliente> listaClientesNuevos=clienteDAO.listaClientes;
+        
+        listaClientes=listaClientesNuevos;
+        jComboBox1.removeAllItems();
+        for(Code.Cliente aux : listaClientes){
+            jComboBox1.addItem(aux.getName());
+        }
+        
+      }catch(Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

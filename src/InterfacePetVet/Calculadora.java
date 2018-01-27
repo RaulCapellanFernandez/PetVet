@@ -109,12 +109,12 @@ public class Calculadora extends javax.swing.JFrame {
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel43.setText("No se que pone");
+        jLabel43.setText("Seleccionar Medic.");
         jPanel16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel44.setText("No se que pone");
+        jLabel44.setText("Seleccionar P.A.");
         jPanel16.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
