@@ -421,16 +421,15 @@ public class Cliente extends javax.swing.JFrame {
             }
             else{
                 //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
-                jTextField8.setText("Nombre: "+clienteSeleccionado.getName());
-                jTextField9.setText("Apellido/s: "+clienteSeleccionado.getApellido());
-                jTextField10.setText("DNI: "+clienteSeleccionado.getDni());
-                jTextField11.setText("Telefono: "+clienteSeleccionado.getNumTelf());
-                jTextField12.setText("Fecha Nacimineto: "+clienteSeleccionado.getFechaNacimineto());
-                jTextField13.setText("Direccion: "+clienteSeleccionado.getDireccion());
+                jTextField8.setText(clienteSeleccionado.getName());
+                jTextField9.setText(clienteSeleccionado.getApellido());
+                jTextField10.setText(clienteSeleccionado.getDni());
+                jTextField11.setText(clienteSeleccionado.getNumTelf());
+                jTextField12.setText(clienteSeleccionado.getFechaNacimineto());
+                jTextField13.setText(clienteSeleccionado.getDireccion());
                 
             }
         } catch (Exception ex) {
-            System.out.println("Wops");
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel5MouseClicked
