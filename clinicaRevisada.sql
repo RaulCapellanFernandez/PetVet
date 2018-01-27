@@ -7,7 +7,7 @@ CREATE TABLE empleados (
   Apellidos varchar(45) NOT NULL,
   Telefono int(11) NOT NULL,
   Contraseña varchar(45) NOT NULL,
-  CuentaBancaria int(20) NOT NULL,
+  CuentaBancaria varchar(20) NOT NULL,
   Tipo char(20) NOT NULL,
   PRIMARY KEY (DNI),
   UNIQUE KEY DNI_UNIQUE (DNI)
@@ -44,7 +44,7 @@ CREATE TABLE clientes (
 ) ;
 
 CREATE TABLE mascotas (
-  NumeroChip varchar(15) NOT NULL,
+  NumeroChip int(11) NOT NULL,
   Nombre char(20) NOT NULL,
   TipoMascota char(30) NOT NULL,
   Raza char(40) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE mascotas (
   PRIMARY KEY (NumeroChip),
   UNIQUE KEY NumeroChip_UNIQUE (NumeroChip),
   KEY DNICliente_idx (DNICliente),
-  CONSTRAINT DNICliente FOREIGN KEY (DNICliente) REFERENCES cliente (DNI) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT DNICliente FOREIGN KEY (DNICliente) REFERENCES clientes (DNI) ON DELETE NO ACTION ON UPDATE NO ACTION
 ); 
 
 CREATE TABLE medicamentos (
@@ -76,8 +76,8 @@ CREATE TABLE auxclien (
   UNIQUE KEY DNICliente_UNIQUE (DNICliente),
   UNIQUE KEY DNIAuxiliar_UNIQUE (DNIAuxiliar),
   UNIQUE KEY FechaVisita_UNIQUE (FechaVisita),
-  CONSTRAINT Auxiliar FOREIGN KEY (DNIAuxiliar) REFERENCES auxiliar (DNIAuxiliar) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT Cliente FOREIGN KEY (DNICliente) REFERENCES cliente (DNI) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT Auxiliar FOREIGN KEY (DNIAuxiliar) REFERENCES empleadosauxiliar (DNIAuxiliar) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT Cliente FOREIGN KEY (DNICliente) REFERENCES clientes (DNI) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE vetclien (
@@ -101,9 +101,9 @@ CREATE TABLE mascomedicaveter (
   UNIQUE KEY NumeroChipMascota_UNIQUE (NumeroChipMascota),
   UNIQUE KEY CodigoMedicamento_UNIQUE (CodigoMedicamento),
   KEY Veterinario_idx (DNIVeterinario),
-  CONSTRAINT Chip FOREIGN KEY (NumeroChipMascota) REFERENCES mascota (NumeroChip) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT Chip FOREIGN KEY (NumeroChipMascota) REFERENCES mascotas (NumeroChip) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT Medicamento FOREIGN KEY (CodigoMedicamento) REFERENCES medicamentos (CodigoMedicamento) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT Veterinario FOREIGN KEY (DNIVeterinario) REFERENCES veterinario (DNIVeterinarioauxclien) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT Veterinario FOREIGN KEY (DNIVeterinario) REFERENCES veterinario (DNIVeterinario) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ;
 
 INSERT INTO empleados VALUES('77777777A', 'Rafa', 'Mejido', 999888777, 'alpaca',444433322, 'Veterinario');

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
 Clase encargada de comunicar la base de datos con el codigo de dicha clase
@@ -50,8 +52,10 @@ public class EmpleadoDAO extends ConexionBD {
     public void eliminar(Empleado empleado) throws Exception {
         try{
             this.abrirConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM empleado WHERE DNI==?");
-            st.setString(1, empleado.getDni()); st.executeUpdate();
+            System.out.println("DELETE FROM empleados WHERE DNI="+empleado.getDni());
+            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM empleados WHERE DNI=?");
+            st.setString(1, empleado.getDni()); 
+            st.executeUpdate();
         }
         catch (Exception e){
             throw new Exception("Metodo Eliminar un Empleado " + e.getMessage()); 
@@ -94,6 +98,38 @@ public class EmpleadoDAO extends ConexionBD {
                 throw new Exception("Cerrar conexión insertar empleado " + e.getMessage()); 
             }
         }
+    }
+    public void modificar(Empleado empleado)throws Exception{
+        try {
+            Connection cn;
+            this.abrirConexion();
+            cn=this.getConexion();
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE empleados SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Contraseña = ?, CuentaBancaria = ?, Tipo = ? WHERE DNI = ?");
+            System.out.println("Modificar el empleado");
+            st.setString(1, empleado.getDni());
+            st.setString(2, empleado.getName()); 
+            st.setString(3, empleado.getApellido());
+            st.setString(4, empleado.getNumTelf());
+            st.setString(5, empleado.getContrasena());
+            st.setString(6, empleado.getCuentaBancaria());
+            st.setString(7, empleado.getTipo()); 
+            st.setString(8, empleado.getDni());
+            System.out.println(st);
+            st.executeUpdate();
+            
+                    
+        } catch (Exception e) {
+            throw new Exception("modificar empleado " + e.getMessage()); 
+        }
+        finally{
+            try{
+                
+                this.cerrarConexion();
+            }catch (Exception e){
+                throw new Exception("Cerrar conexión modificar empleado " + e.getMessage()); 
+            }
+        }
+            
     }
     
 }
