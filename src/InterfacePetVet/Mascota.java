@@ -165,6 +165,11 @@ public class Mascota extends javax.swing.JFrame {
 
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Registrar");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel9.add(jLabel8);
 
         jTextField2.setBackground(jPanel7.getBackground());
@@ -478,7 +483,7 @@ public class Mascota extends javax.swing.JFrame {
                jTextField6.setText(mascotaEncontrada.getEspecie());
                jTextField7.setText(String.valueOf(mascotaEncontrada.getPeso()));
                jTextField5.setText(String.valueOf(mascotaEncontrada.getEdad()));
-               jTextField8.setText(String.valueOf(mascotaEncontrada.getDniCliente()));
+               jTextField8.setText(mascotaEncontrada.getDniCliente());
             }
                     
                 
@@ -520,6 +525,40 @@ public class Mascota extends javax.swing.JFrame {
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
+    //Guardar Nueva mascota 
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        try {
+            int chipNuevo=Integer.parseInt(jTextField2.getText());
+            MascotaDAO objetoMascotaDAO=new MascotaDAO();
+           
+            for(Code.Mascota aux : objetoMascotaDAO.listaMascotas){
+                if(aux.getNumChip()==chipNuevo){
+                    return;
+                }
+            }
+            Code.Mascota mascotaNueva= new Code.Mascota();
+            mascotaNueva.setNumChip(chipNuevo);
+            mascotaNueva.setDniCliente(jTextField8.getText());
+            mascotaNueva.setEdad(Integer.parseInt(jTextField5.getText()));
+            mascotaNueva.setEspecie(jTextField6.getText());
+            mascotaNueva.setNombre(jTextField3.getText());
+            mascotaNueva.setPeso(Float.parseFloat(jTextField7.getText()));
+            mascotaNueva.setEdad(Integer.parseInt(jTextField5.getText()));
+            mascotaNueva.setRaza(jTextField4.getText());
+            mascotaNueva.setTipo(jTextField8.getText());
+            
+            System.out.println("Vamos a registrar el objeto");
+            objetoMascotaDAO.registrar(mascotaNueva);
+            recarga();
+            //jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return;
+        
+        
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -611,4 +650,5 @@ public class Mascota extends javax.swing.JFrame {
             Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

@@ -507,7 +507,7 @@ public class Cliente extends javax.swing.JFrame {
                 jTextField13.setText(clienteSeleccionado.getDireccion());
                 //System.err.println("Tiene Diri"+clienteSeleccionado.getDireccion());
                 List<String> mascotas=clienteSeleccionado.getMascotas();
-                System.err.println("Sus mascotas "+clienteSeleccionado.getMascotas());
+                //System.err.println("Sus mascotas "+clienteSeleccionado.getMascotas());
                 jComboBox2.removeAllItems();
                 if(mascotas.isEmpty()){
                     System.err.println("Es null");
