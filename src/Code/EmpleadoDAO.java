@@ -39,7 +39,6 @@ public class EmpleadoDAO extends ConexionBD {
 
                 listaEmpleados.add(empleado);
             }
-            System.out.println("Cierro la conexion");
             this.cerrarConexion();
             
 

@@ -5,6 +5,9 @@
  */
 package InterfacePetVet;
 
+import Code.ClienteDAO;
+import Code.MascotaDAO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,8 +20,13 @@ public class Mascota extends javax.swing.JFrame {
     /**
      * Creates new form Mascota
      */
-    public Mascota() {
+    public List<Code.Cliente> listaClientes;
+    public ClienteDAO objetoClienteDAO;
+    public MascotaDAO objetoMascotaDAO;
+    
+    public Mascota() throws Exception, Exception {
         initComponents();
+        recarga();
     }
 
     /**
@@ -36,10 +44,15 @@ public class Mascota extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jPanel_Volver = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -78,14 +91,18 @@ public class Mascota extends javax.swing.JFrame {
 
         jTextField1.setBackground(jPanel8.getBackground());
         jTextField1.setForeground(new java.awt.Color(240, 240, 240));
-        jTextField1.setText("DNI Cliente");
+        jTextField1.setText("Lista Mascotas");
         jTextField1.setBorder(null);
-        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
-        jPanel8.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 160, 10));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel11.setText("Cliente:");
+        jLabel11.setText("Lista Clientes:");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jPanel_Volver.setBackground(new java.awt.Color(153, 51, 255));
@@ -100,7 +117,41 @@ public class Mascota extends javax.swing.JFrame {
         jLabel12.setText("Volver");
         jPanel_Volver.add(jLabel12);
 
-        jPanel8.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 70, -1));
+        jPanel8.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 70, -1));
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel5.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
+
+        jLabel15.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel15.setText("Cargar");
+        jPanel5.add(jLabel15);
+
+        jPanel8.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 70, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jPanel8.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 160, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        jPanel8.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
+
+        jPanel6.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel6.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+        });
+
+        jLabel16.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel16.setText("Cargar");
+        jPanel6.add(jLabel16);
+
+        jPanel8.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 70, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(240, 240, 240));
@@ -306,6 +357,93 @@ public class Mascota extends javax.swing.JFrame {
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
 
     }//GEN-LAST:event_jPanel11MouseClicked
+    //CARGAR Cliente
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        try {
+            
+            Code.Cliente clienteSeleccionado=new Code.Cliente();
+            clienteSeleccionado.setName("Ninguno");
+           
+            listaClientes=objetoClienteDAO.listaClientes;
+            String DNIClienteSeleccionado=String.valueOf(jComboBox2.getSelectedItem());;
+            System.err.println("Has elegido a "+DNIClienteSeleccionado);
+            for(Code.Cliente empleadoAux : listaClientes){
+                if(empleadoAux.getName().equals(DNIClienteSeleccionado)){
+                    clienteSeleccionado=empleadoAux;
+                }
+                else{
+                   // System.out.println("No es "+empleadoAux.getName());
+                }
+            }
+            if(clienteSeleccionado.getName().equals("Ninguno")){
+                //System.out.println("Ese cliente, "+DNIClienteSeleccionado+" no existe!");
+                
+            }
+            else{
+               //Colocar las mascotas
+               List<String> listaMasc=clienteSeleccionado.getMascotas();
+               for(String auxi : listaMasc){
+                   jComboBox1.addItem(auxi);
+               }
+               
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
+    //Cargar mascota
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        try {
+            
+            int intChip=Integer.valueOf((String)jComboBox1.getSelectedItem());
+           
+            objetoMascotaDAO=new MascotaDAO();
+            Code.Mascota mascotaEncontrada=new Code.Mascota();
+            List<Code.Mascota> listaMasc=objetoMascotaDAO.listaMascotas;
+            boolean encontrado=false;
+            System.err.println("La lista es: "+objetoMascotaDAO.listaMascotas);
+            System.out.println(listaMasc.size());
+            for(Code.Mascota aux : listaMasc){
+                if(aux.getNumChip()==intChip && encontrado==false){
+                    encontrado=true;
+                    mascotaEncontrada=aux;
+                    System.err.println("Encontrada!");
+                }
+                else{
+                    System.err.println("No es "+aux.getNumChip());
+                }
+            }
+            if(encontrado==false){
+                System.err.println("No existe esa mascota");
+            }
+            else{
+               jTextField2.setText(String.valueOf(mascotaEncontrada.getNumChip()));
+               jTextField3.setText(mascotaEncontrada.getNombre());
+               jTextField4.setText(mascotaEncontrada.getRaza());
+               jTextField6.setText(mascotaEncontrada.getEspecie());
+               jTextField7.setText(String.valueOf(mascotaEncontrada.getPeso()));
+               jTextField5.setText(String.valueOf(mascotaEncontrada.getEdad()));
+               
+            }
+                    
+                
+                
+                
+        } catch (Exception ex) {
+            Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jPanel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -337,27 +475,36 @@ public class Mascota extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mascota().setVisible(true);
+                try {
+                    new Mascota().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanel_Volver;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -373,4 +520,16 @@ public class Mascota extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    private void recarga() {
+        try {
+            objetoClienteDAO=new ClienteDAO();
+            List<Code.Cliente> listaClientes=objetoClienteDAO.listaClientes;
+            for(Code.Cliente aux : listaClientes){
+                jComboBox2.addItem(aux.getName());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

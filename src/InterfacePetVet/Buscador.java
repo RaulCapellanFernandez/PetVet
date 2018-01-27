@@ -98,6 +98,11 @@ public class Buscador extends javax.swing.JFrame {
         jLabel_Calculadora.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_calculator_white_18dp.png"))); // NOI18N
         jLabel_Calculadora.setText("Calculadora");
+        jLabel_Calculadora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CalculadoraMouseClicked(evt);
+            }
+        });
 
         jLabel_Empleado.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_worker_white_18dp.png"))); // NOI18N
@@ -204,6 +209,17 @@ public class Buscador extends javax.swing.JFrame {
             Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel_MedicamentoMouseClicked
+
+    private void jLabel_CalculadoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalculadoraMouseClicked
+        try{
+            Calculadora vCalculadora= new Calculadora();
+            vCalculadora.setVisible(true);
+            dispose();
+        } catch(Exception ex){
+            
+            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel_CalculadoraMouseClicked
 
     /**
      * @param args the command line arguments

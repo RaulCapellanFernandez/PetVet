@@ -44,7 +44,8 @@ public class ClienteDAO extends ConexionBD {
                 for(int i=0;i<splitStringMascotas.length;i++){
                     listaMascotas.add(splitStringMascotas[i]);
                 }
-                System.err.println("Mascotas: "+listaMascotas);
+                System.err.println("Mascotas de "+cliente.getName()+" : "+listaMascotas);
+                cliente.setMascotas(listaMascotas);
                 listaClientes.add(cliente);
             }
             this.cerrarConexion(); 

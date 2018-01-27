@@ -17,31 +17,42 @@ import java.util.List;
  */
 public class MascotaDAO extends ConexionBD {
     
-    public List<Mascota> listar() throws Exception{
-        ArrayList<Mascota> listaMascotas =new <Mascota>ArrayList();
+   public ArrayList<Mascota> listaMascotas = new <Mascota>ArrayList(); 
+    public MascotaDAO() throws Exception{
+        listar();
+    }
+    
+     
+
+    public ArrayList<Mascota> listar() throws Exception{
+        
+        
         try{
             this.abrirConexion();
             //Cambiar esto segun la BBDD
-            PreparedStatement st = this.getConexion().prepareStatement("Select * from mascotas");
-            ResultSet rs=st.executeQuery();
+            PreparedStatement st = this.getConexion().prepareStatement("SELECT * from mascotas");
+            ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Mascota mascota=new Mascota();
-                
-                mascota.setNumChip(rs.getInt("NumeroChip"));
-                mascota.setNombre(rs.getString("Nombre"));
-                mascota.setTipo(Mascota.TipoDeMascota.valueOf(rs.getString("TipoMascota")));
-                mascota.setRaza(rs.getString("Raza"));
-                mascota.setDniCliente(rs.getString("DNICliente"));
-                mascota.setPeso(rs.getFloat("Peso"));
-                mascota.setEdad(rs.getInt("Edad"));
-                mascota.setEspecie(rs.getString("Especie"));
+                Mascota mascota = new Mascota(); 
+                mascota.setNumChip(Integer.parseInt(rs.getString("NumeroChip"))); 
+                mascota.setNombre(rs.getString("Nombre")); 
+                mascota.setTipo(rs.getString("TipoMascota")); 
+                mascota.setRaza(rs.getString("Raza")); 
+                mascota.setDniCliente(rs.getString("DNICliente")); 
+                mascota.setPeso(Integer.parseInt(rs.getString("Peso")));
+                mascota.setEdad(Integer.parseInt(rs.getString("Edad"))); 
+                mascota.setEspecie(rs.getString("Especie")); 
+
+                listaMascotas.add(mascota);
             }
             this.cerrarConexion();
             
-        }catch(Exception e){
-            throw new Exception("Listar mascotas "+e.getMessage());
+
+        }catch (Exception e){
+            throw new Exception("Listar usuarios " + e.getMessage());
         }
-        return(listaMascotas);
+
+        return listaMascotas;
     }
     
     public void eliminar(Mascota mascota) throws Exception{

@@ -402,9 +402,8 @@ public class Cliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,9 +459,13 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_VolverMouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-       Mascota vMascota = new Mascota();
-        vMascota.setVisible(true);
-        dispose();
+        try {
+            Mascota vMascota = new Mascota();
+            vMascota.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jPanel6MouseClicked
     
     //CARGAR
@@ -507,7 +510,7 @@ public class Cliente extends javax.swing.JFrame {
                 System.err.println("Sus mascotas "+clienteSeleccionado.getMascotas());
                 jComboBox2.removeAllItems();
                 if(mascotas.isEmpty()){
-                    
+                    System.err.println("Es null");
                 }
                 else{
                     for(String aux : mascotas){
@@ -629,4 +632,5 @@ public class Cliente extends javax.swing.JFrame {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

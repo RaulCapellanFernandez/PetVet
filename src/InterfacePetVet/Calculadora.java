@@ -90,7 +90,7 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(240, 240, 240));
         jLabel40.setText("Seleccionar Principio Activo");
-        jPanel16.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        jPanel16.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(240, 240, 240));
@@ -119,7 +119,7 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel47.setForeground(new java.awt.Color(240, 240, 240));
         jLabel47.setText("Peso");
         jPanel16.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-        jPanel16.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 170, 10));
+        jPanel16.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 170, 10));
         jPanel16.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 120, 10));
 
         jComboBoxMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -166,7 +166,7 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel16.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 210, 10));
 
         jComboBox_PrincipioActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel16.add(jComboBox_PrincipioActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 160, -1));
+        jPanel16.add(jComboBox_PrincipioActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
 
         jComboBox_Medicamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_Medicamento.addActionListener(new java.awt.event.ActionListener() {
@@ -174,12 +174,12 @@ public class Calculadora extends javax.swing.JFrame {
                 jComboBox_MedicamentoActionPerformed(evt);
             }
         });
-        jPanel16.add(jComboBox_Medicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 160, -1));
+        jPanel16.add(jComboBox_Medicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 160, -1));
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(240, 240, 240));
         jLabel51.setText("Seleccionar Medicamento");
-        jPanel16.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+        jPanel16.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jTextField16.setBackground(jPanel16.getBackground());
         jTextField16.setForeground(new java.awt.Color(240, 240, 240));
@@ -200,8 +200,8 @@ public class Calculadora extends javax.swing.JFrame {
         jTextField_Resultado.setForeground(new java.awt.Color(240, 240, 240));
         jTextField_Resultado.setText("Resultado");
         jTextField_Resultado.setBorder(null);
-        jPanel16.add(jTextField_Resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 210, -1));
-        jPanel16.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 210, 5));
+        jPanel16.add(jTextField_Resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 210, -1));
+        jPanel16.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 210, 5));
 
         jPanel17.setBackground(new java.awt.Color(0, 153, 102));
         jPanel17.setForeground(new java.awt.Color(240, 240, 240));
@@ -210,7 +210,7 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel48.setText("Calcular");
         jPanel17.add(jLabel48);
 
-        jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 70, -1));
+        jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 70, 30));
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 255));
         jPanel4.setForeground(new java.awt.Color(240, 240, 240));
@@ -244,15 +244,14 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 24, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 11, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -264,7 +263,7 @@ public class Calculadora extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

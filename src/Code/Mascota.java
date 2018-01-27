@@ -9,14 +9,13 @@ public class Mascota{
     public Mascota(){
         //Se crea un objeto vacío, que se llenará con los setters
     }
-    public static enum TipoDeMascota{sano,tratamiento,hospitalizado};
     //Variables
     private String dniCliente;
     private int numChip;
     private String nombre;
     private String raza;
     private String especie;
-    private TipoDeMascota tipo;
+    private String tipo;
     private float peso;
     private int edad;
 
@@ -48,7 +47,7 @@ public class Mascota{
         return raza;
     }
 
-    public TipoDeMascota getTipo() {
+    public String getTipo() {
         return tipo;
     }
     public float getPeso() {
@@ -77,7 +76,7 @@ public class Mascota{
         this.raza = raza;
     }
 
-    public void setTipo(TipoDeMascota tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
     public void setPeso(float peso){
