@@ -5,6 +5,8 @@
  */
 package InterfacePetVet;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -173,9 +175,13 @@ public class Buscador extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_Volver1MouseClicked
 
     private void jLabel_EmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmpleadoMouseClicked
-        Empleado vEmpleado = new Empleado();
-        vEmpleado.setVisible(true);
-        dispose();
+        try {
+            Empleado vEmpleado = new Empleado();
+            vEmpleado.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel_EmpleadoMouseClicked
 
     private void jLabel_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ClienteMouseClicked
@@ -185,9 +191,13 @@ public class Buscador extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_ClienteMouseClicked
 
     private void jLabel_MedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MedicamentoMouseClicked
-        Medicina vMedicina = new Medicina();
-        vMedicina.setVisible(true);
-        dispose();
+        try {
+            Medicina vMedicina = new Medicina();
+            vMedicina.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel_MedicamentoMouseClicked
 
     /**

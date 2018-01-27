@@ -19,7 +19,7 @@ public class EmpleadoDAO extends ConexionBD {
     
      
 
-    public void listar() throws Exception{
+    public ArrayList<Empleado> listar() throws Exception{
         
         
         try{
@@ -40,13 +40,14 @@ public class EmpleadoDAO extends ConexionBD {
                 listaEmpleados.add(empleado);
             }
             System.out.println("Cierro la conexion");
-            this.cerrarConexion(); 
+            this.cerrarConexion();
+            
 
         }catch (Exception e){
             throw new Exception("Listar usuarios " + e.getMessage());
         }
 
-        return;
+        return listaEmpleados;
     }
     
     public void eliminar(Empleado empleado) throws Exception {

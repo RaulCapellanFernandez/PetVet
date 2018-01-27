@@ -6,8 +6,10 @@
 package InterfacePetVet;
 
 
+import Code.EmpleadoDAO;
 import Code.Medicamento;
 import Code.MedicamentoDAO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +24,11 @@ public class Medicina extends javax.swing.JFrame {
     /**
      * Creates new form Medicina
      */
-    public Medicina() {
+    public Medicina() throws Exception {
         initComponents();
+        rellenarComboBox();
+        jPanel6.setVisible(false);
+        jPanel7.setVisible(false);
     }
 
     /**
@@ -58,6 +63,10 @@ public class Medicina extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +105,6 @@ public class Medicina extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(153, 0, 51));
         jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setBorder(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,10 +187,39 @@ public class Medicina extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 102));
         jPanel5.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("Guardar");
         jPanel5.add(jLabel7);
+
+        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel6.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+        });
+
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("Modificar");
+        jPanel6.add(jLabel9);
+
+        jPanel7.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel7.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel10.setText("Borrar");
+        jPanel7.add(jLabel10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,21 +229,29 @@ public class Medicina extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 46, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 34, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,24 +260,29 @@ public class Medicina extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,7 +335,10 @@ public class Medicina extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-       try {
+       jPanel6.setVisible(true);
+       jPanel7.setVisible(true);
+       jPanel5.setVisible(false);
+        try {
             List<Medicamento> listaMedicamentos;
             Medicamento medicamentoSeleccionado=new Medicamento();
             medicamentoSeleccionado.setNombreTecnico("Ninguno");
@@ -306,10 +359,10 @@ public class Medicina extends javax.swing.JFrame {
             }
             else{
                 //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
-                jTextField8.setText("Codigo: "+medicamentoSeleccionado.getCodigoMedicamento());
-                jTextField9.setText("Nombre: "+medicamentoSeleccionado.getNombreTecnico());
-                jTextField10.setText("Cantidad: "+medicamentoSeleccionado.getCantidadMedicamento());
-                jTextField12.setText("Principios Activos: "+medicamentoSeleccionado.getPrincipiosActivos());
+                jTextField8.setText(String.valueOf(medicamentoSeleccionado.getCodigoMedicamento()));
+                jTextField9.setText(String.valueOf(medicamentoSeleccionado.getNombreTecnico()));
+                jTextField10.setText(String.valueOf(medicamentoSeleccionado.getCantidadMedicamento()));
+                jTextField12.setText(String.valueOf(medicamentoSeleccionado.getPrincipiosActivos()));
                
             }
         } catch (Exception ex) {
@@ -317,6 +370,89 @@ public class Medicina extends javax.swing.JFrame {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        try{
+            String codigoNuevo=jTextField8.getText();
+            MedicamentoDAO objetoMedicamentoDAO=new MedicamentoDAO();
+            Medicamento lista = new Medicamento();
+            
+            ArrayList<String> listaMedicamentos = new ArrayList<String>();
+            listaMedicamentos.add(jTextField12.getText());
+            System.out.println(jTextField12.getText());
+            
+            int codigo = Integer.parseInt(jTextField8.getText());
+            int cantidad = Integer.parseInt(jTextField10.getText());
+            
+            Medicamento medicamentoModificar= new Medicamento();
+            medicamentoModificar.setCodigoMedicamento(codigo);
+            medicamentoModificar.setNombreTecnico(jTextField9.getText());
+            medicamentoModificar.setCantidadMedicamento(cantidad);
+            medicamentoModificar.setPrincipiosActivos(listaMedicamentos);
+            
+            System.out.println("Vamos a Modificar el objeto");
+            objetoMedicamentoDAO.modificar(medicamentoModificar);
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        try{
+            String codigoNuevo=jTextField8.getText();
+            MedicamentoDAO objetoMediacmentoDAO=new MedicamentoDAO();
+            int codigo = Integer.parseInt(jTextField8.getText());
+            Medicamento medicamentoBorrar= new Medicamento();
+            medicamentoBorrar.setCodigoMedicamento(codigo);
+            
+            System.out.println("Vamos a Borrar el objeto");
+            objetoMediacmentoDAO.eliminar(medicamentoBorrar);
+            dispose();
+            Medicina jVentana= new Medicina();
+            jVentana.setVisible(true);
+
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        try {
+            //System.out.println("Quieres guardar un objeto!");
+            String nombreNuevo=jTextField8.getText();
+            MedicamentoDAO objetoMedicamentoDAO=new MedicamentoDAO();
+            //System.out.println("Hay "+objetoEmpleadoDAO.listaEmpleados.size()+" empleados");
+            for(int i=0;i<objetoMedicamentoDAO.listaMedicamentos.size();i++){
+                System.err.println("i es "+i);
+                if(String.valueOf(jComboBox1.getItemAt(i)).equals(nombreNuevo)){
+                    //System.out.println("Ese usuario ya existe, prueba con otro nombre");
+                    return; 
+                }
+                //else{
+                //    System.out.println("No es "+String.valueOf((jComboBox1.getItemAt(i))));
+                //}
+            }
+            Medicamento medicamentoNuevo= new Medicamento();
+            medicamentoNuevo.setCodigoMedicamento(Integer.valueOf(jTextField8.getText()));
+            medicamentoNuevo.setNombreTecnico(jTextField9.getText());
+            medicamentoNuevo.setCantidadMedicamento(Integer.valueOf(jTextField10.getText()));
+            
+            ArrayList<String> listaMedicamentos = new ArrayList<String>();
+            listaMedicamentos.add(jTextField12.getText());
+            
+            medicamentoNuevo.setPrincipiosActivos(listaMedicamentos);
+            
+            
+            System.out.println("Vamos a registrar el objeto");
+            objetoMedicamentoDAO.registrar(medicamentoNuevo);
+            jComboBox1.insertItemAt(medicamentoNuevo.getNombreTecnico(), jComboBox1.getItemCount());
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return;
+    }//GEN-LAST:event_jPanel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -348,7 +484,11 @@ public class Medicina extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Medicina().setVisible(true);
+                try {
+                    new Medicina().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Medicina.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -356,17 +496,21 @@ public class Medicina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel_Volver;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -378,4 +522,15 @@ public class Medicina extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void rellenarComboBox() throws Exception {
+       List<Medicamento> listaMedicamentos;
+       MedicamentoDAO lista = new MedicamentoDAO();
+       listaMedicamentos = lista.listar();
+       
+       for(int i = 0; i< listaMedicamentos.size(); i++){
+           jComboBox1.addItem(String.valueOf(listaMedicamentos.get(i).getNombreTecnico()));
+       }
+       
+    }
 }

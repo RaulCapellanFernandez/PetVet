@@ -7,6 +7,7 @@ package InterfacePetVet;
 
 import java.util.List;
 import Code.EmpleadoDAO;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,10 +21,11 @@ public class Empleado extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
-    public Empleado() {
+    public Empleado() throws Exception {
         initComponents();
         jPanel6.setVisible(false);
         jPanel7.setVisible(false);
+        //rellenarComboBox();
        
     }
 
@@ -444,7 +446,7 @@ public class Empleado extends javax.swing.JFrame {
             }
             System.out.println("Vamos a registrar el objeto");
             objetoEmpleadoDAO.registrar(empleadoNuevo);
-            jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
+            //jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -528,7 +530,11 @@ public class Empleado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empleado().setVisible(true);
+                try {
+                    new Empleado().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -566,6 +572,14 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
-
-
+/*private void rellenarComboBox() throws Exception {
+       ArrayList<Code.Empleado> listaEmpleados = new <Code.Empleado>ArrayList();
+       EmpleadoDAO lista = new EmpleadoDAO();
+       listaEmpleados = lista.listar();
+       
+       for(int i = 0; i< listaEmpleados.size(); i++){
+           jComboBox1.addItem(String.valueOf(listaEmpleados.get(i).getName()));
+       }
+       
+    }*/
 }
