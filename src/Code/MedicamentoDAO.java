@@ -5,6 +5,7 @@
  */
 package Code;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class MedicamentoDAO extends ConexionBD {
      }
     
         
-    public void listar() throws Exception{    
+    public  ArrayList<Medicamento> listar() throws Exception{    
         try{
             this.abrirConexion();
             //Cambiar esto segun la BBDD
@@ -51,13 +52,13 @@ public class MedicamentoDAO extends ConexionBD {
             throw new Exception("Listar medicamentos " + e.getMessage());
         }
 
-        return;
+        return listaMedicamentos;
     }
     
     public void eliminar(Medicamento medicamento) throws Exception {
         try{
             this.abrirConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM medicamentos WHERE CodigoMedicamento==?");
+            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM medicamentos WHERE CodigoMedicamento = ?");
             st.setInt(1, medicamento.getCodigoMedicamento()); st.executeUpdate();
         }
         catch (Exception e){
@@ -78,16 +79,15 @@ public class MedicamentoDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO medicamentos (CodigoMedicamento, NombreTecnico, CantidadMedicamento, PrincipiosActivosç) VALUES (?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO medicamentos (CodigoMedicamento, NombreTecnico, CantidadMedicamento, PrincipiosActivos) VALUES (?,?,?,?)");
             st.setInt(1, medicamento.getCodigoMedicamento());
             st.setString(2, medicamento.getNombreTecnico()); 
             st.setInt(3, medicamento.getCantidadMedicamento());
-            List<String> listaMedicamentos=medicamento.getPrincipiosActivos();
-            String stringListaMedicamentos="";
-            for (String medicamentoAux : listaMedicamentos) {
-                stringListaMedicamentos=stringListaMedicamentos+medicamentoAux+",";
-            }
-            st.setString(4,stringListaMedicamentos);
+            
+            String prueba = String.join("", medicamento.getPrincipiosActivos());
+            
+            st.setString(4, prueba);
+            
             
             st.executeUpdate();
             
@@ -103,4 +103,38 @@ public class MedicamentoDAO extends ConexionBD {
             }
         }
     }
+    
+    public void modificar(Medicamento medicamento)throws Exception{
+        try {
+            Connection cn;
+            this.abrirConexion();
+            cn=this.getConexion();
+            
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE medicamentos SET CodigoMedicamento = ?, NombreTecnico = ?, CantidadMedicamento = ?, PrincipiosActivos = ? WHERE CodigoMedicamento = ?");
+            System.out.println("Modificar el empleado");
+            st.setInt(1, medicamento.getCodigoMedicamento());
+            st.setString(2, medicamento.getNombreTecnico()); 
+            st.setInt(3, medicamento.getCantidadMedicamento());
+            String prueba = String.join("", medicamento.getPrincipiosActivos());
+            
+            st.setString(4, prueba);
+           
+            st.setInt(5, medicamento.getCodigoMedicamento());
+            System.out.println(st);
+            st.executeUpdate();
+            
+                    
+        } catch (Exception e) {
+            throw new Exception("modificar medicamento " + e.getMessage()); 
+        }
+        finally{
+            try{
+                
+                this.cerrarConexion();
+            }catch (Exception e){
+                throw new Exception("Cerrar conexión modificar medicamento " + e.getMessage()); 
+            }
+        }
+    }
+
 }

@@ -7,6 +7,7 @@ package InterfacePetVet;
 
 import java.util.List;
 import Code.EmpleadoDAO;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,8 +21,12 @@ public class Empleado extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
-    public Empleado() {
+    public Empleado() throws Exception {
         initComponents();
+        jPanel6.setVisible(false);
+        jPanel7.setVisible(false);
+        //rellenarComboBox();
+       
     }
 
     /**
@@ -34,6 +39,8 @@ public class Empleado extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -58,12 +65,26 @@ public class Empleado extends javax.swing.JFrame {
         jSeparator14 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(55, 56, 77));
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel5.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
+
+        jLabel7.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel7.setText("Guardar");
+        jPanel5.add(jLabel7);
 
         jPanel2.setBackground(new java.awt.Color(38, 40, 55));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,17 +217,29 @@ public class Empleado extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 102));
-        jPanel5.setForeground(new java.awt.Color(240, 240, 240));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel6.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel5MouseClicked(evt);
+                jPanel6MouseClicked(evt);
             }
         });
 
-        jLabel7.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel7.setText("Guardar");
-        jPanel5.add(jLabel7);
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("Modificar");
+        jPanel6.add(jLabel9);
+
+        jPanel7.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel7.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel10.setText("Borrar");
+        jPanel7.add(jLabel10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,8 +249,13 @@ public class Empleado extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,9 +270,9 @@ public class Empleado extends javax.swing.JFrame {
                             .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(72, 72, 72)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,8 +305,12 @@ public class Empleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -311,6 +353,9 @@ public class Empleado extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         try {
+            jPanel6.setVisible(true);
+            jPanel7.setVisible(true);
+            jPanel5.setVisible(false);
             List<Code.Empleado> listaEmpleados;
             Code.Empleado empleadoSeleccionado=new Code.Empleado();
             empleadoSeleccionado.setName("Ninguno");
@@ -331,17 +376,18 @@ public class Empleado extends javax.swing.JFrame {
             }
             else{
                 //System.out.println("Has seleccionado al empleado"+empleadoSeleccionado.getName());
-                jTextField8.setText("Nombre: "+empleadoSeleccionado.getName());
-                jTextField9.setText("Apellido/s: "+empleadoSeleccionado.getApellido());
-                jTextField10.setText("DNI: "+empleadoSeleccionado.getDni());
-                jTextField11.setText("Telefono: "+empleadoSeleccionado.getNumTelf());
-                jTextField12.setText("Contraseña: "+empleadoSeleccionado.getContrasena());
+                jTextField8.setText(empleadoSeleccionado.getName());
+                jTextField9.setText(empleadoSeleccionado.getApellido());
+                jTextField10.setText(empleadoSeleccionado.getDni());
+                jTextField11.setText(empleadoSeleccionado.getNumTelf());
+                jTextField12.setText(empleadoSeleccionado.getContrasena());
 
                 if (empleadoSeleccionado.getTipo().equals("Auxiliar")){
                     jComboBox2.setSelectedIndex(0);
                 }
                 else 
                     jComboBox2.setSelectedIndex(1);
+                    
                 
 
             }
@@ -399,11 +445,59 @@ public class Empleado extends javax.swing.JFrame {
             }
             System.out.println("Vamos a registrar el objeto");
             objetoEmpleadoDAO.registrar(empleadoNuevo);
+            //jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         return;
     }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        try{
+            String nombreNuevo=jTextField8.getText();
+            EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
+            
+            Code.Empleado empleadoModificar= new Code.Empleado();
+            empleadoModificar.setName(nombreNuevo);
+            empleadoModificar.setApellido(jTextField9.getText());
+            empleadoModificar.setDni(jTextField10.getText());
+            empleadoModificar.setNumTelf(jTextField11.getText());
+            empleadoModificar.setContrasena(jTextField12.getText());
+            empleadoModificar.setCuentaBancaria("Pendiente");
+            if(jComboBox2.getSelectedIndex()==0){
+                empleadoModificar.setTipo("Auxiliar");
+            }
+            else{
+                empleadoModificar.setTipo("Veterinario");
+            }
+            System.out.println("Vamos a Modificar el objeto");
+            objetoEmpleadoDAO.modificar(empleadoModificar);
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        try{
+            String nombreNuevo=jTextField8.getText();
+            EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
+            
+            Code.Empleado empleadoBorrar= new Code.Empleado();
+            empleadoBorrar.setDni(jTextField10.getText());
+            empleadoBorrar.setName(jTextField8.getText());
+            System.out.println("Vamos a Borrar el objeto");
+            objetoEmpleadoDAO.eliminar(empleadoBorrar);
+            dispose();
+            Empleado jVentana= new Empleado();
+            jVentana.setVisible(true);
+          
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+    }//GEN-LAST:event_jPanel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -435,7 +529,11 @@ public class Empleado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empleado().setVisible(true);
+                try {
+                    new Empleado().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -444,17 +542,21 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel_Volver;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -469,4 +571,14 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+/*private void rellenarComboBox() throws Exception {
+       ArrayList<Code.Empleado> listaEmpleados = new <Code.Empleado>ArrayList();
+       EmpleadoDAO lista = new EmpleadoDAO();
+       listaEmpleados = lista.listar();
+       
+       for(int i = 0; i< listaEmpleados.size(); i++){
+           jComboBox1.addItem(String.valueOf(listaEmpleados.get(i).getName()));
+       }
+       
+    }*/
 }
