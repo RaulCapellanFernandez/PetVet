@@ -99,7 +99,7 @@ public class EmpleadoDAO extends ConexionBD {
             }
         }
     }
-    public void modificar(Empleado empleado)throws Exception{
+    public void modificar(Empleado empleado, String dniViejo)throws Exception{
         try {
             Connection cn;
             this.abrirConexion();
@@ -113,7 +113,7 @@ public class EmpleadoDAO extends ConexionBD {
             st.setString(5, empleado.getContrasena());
             st.setInt(6, 10);
             st.setString(7, empleado.getTipo()); 
-            st.setString(8, empleado.getDni());
+            st.setString(8, dniViejo);
             System.out.println(st);
             st.executeUpdate();
             
@@ -131,5 +131,5 @@ public class EmpleadoDAO extends ConexionBD {
         }
             
     }
-    
+
 }

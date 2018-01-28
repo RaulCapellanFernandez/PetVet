@@ -443,8 +443,8 @@ public class Cliente extends javax.swing.JFrame {
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
       JOptionPane.showMessageDialog(this,"Boton cargar carga un cliente en la parte derecha.\n"
-              + "Guarda-Mascota guarda los datos y va a la pestaña mascostas con la seleccionada\n"
-              + "Si está vacia llega a la ventana sin rellenar");
+              + "Guarda-Mascota guarda los datos \n"
+              + "Para Guardar la mascota, haz click en el boton Mascotas");
     }//GEN-LAST:event_jPanel4MouseClicked
     //Guardar nuevo cliente
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked

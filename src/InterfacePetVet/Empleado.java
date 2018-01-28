@@ -474,8 +474,22 @@ public class Empleado extends javax.swing.JFrame {
     //MODIFICAR EMPLEADO
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         try{
+            String nombreViejo=String.valueOf(jComboBox1.getSelectedItem());
+            String dniViejo="0000";
             String nombreNuevo=jTextField8.getText();
             EmpleadoDAO objetoEmpleadoDAO=new EmpleadoDAO();
+            //Conseguir el DNI del empleado a modificar 
+            List<Code.Empleado> listaEmplead=objetoEmpleadoDAO.listaEmpleados;
+            for(Code.Empleado aux : listaEmplead){
+                if(aux.getName().equals(nombreViejo)){
+                    dniViejo=aux.getDni();
+                }
+            }
+            if(dniViejo.equals("0000")){
+                System.err.println("El empleado no existe");
+                return;
+            }
+            
             
             Code.Empleado empleadoModificar= new Code.Empleado();
             empleadoModificar.setName(nombreNuevo);
@@ -491,7 +505,7 @@ public class Empleado extends javax.swing.JFrame {
                 empleadoModificar.setTipo("Veterinario");
             }
             System.out.println("Vamos a Modificar el objeto ");
-            objetoEmpleadoDAO.modificar(empleadoModificar);
+            objetoEmpleadoDAO.modificar(empleadoModificar, dniViejo);
             recarga();
            
         } catch (Exception ex) {
@@ -519,9 +533,10 @@ public class Empleado extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_jPanel7MouseClicked
-
+    //Ayuda 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
-        // TODO add your handling code here:
+       JOptionPane.showMessageDialog(this,"Boton cargar carga un empleado en la parte derecha.\n"
+              + "Guarda-Empleado guarda los datos\n");
     }//GEN-LAST:event_jPanel8MouseClicked
 
     /**
