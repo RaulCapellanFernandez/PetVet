@@ -446,9 +446,34 @@ public class Cliente extends javax.swing.JFrame {
               + "Guarda-Mascota guarda los datos y va a la pestaña mascostas con la seleccionada\n"
               + "Si está vacia llega a la ventana sin rellenar");
     }//GEN-LAST:event_jPanel4MouseClicked
-
+    //Guardar nuevo cliente
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
- 
+        try {
+            String nombreNuevo=jTextField8.getText();
+            ClienteDAO cliDAO=new ClienteDAO();
+            for(int i=0;i<cliDAO.listaClientes.size();i++){
+                if(String.valueOf(jComboBox1.getItemAt(i)).equals(nombreNuevo)){
+                    return;
+                }
+            }
+            Code.Cliente clienteNuevo=new Code.Cliente();
+            clienteNuevo.setDni(jTextField10.getText());
+            clienteNuevo.setApellido(jTextField9.getText());
+            clienteNuevo.setName(jTextField8.getText());
+            clienteNuevo.setDeuda(0);
+            clienteNuevo.setDireccion(jTextField13.getText());
+            clienteNuevo.setFechaIngreso("");
+            clienteNuevo.setFechaNacimineto(jTextField12.getText());
+            clienteNuevo.setFechaUltMod("");
+            List<String> lNue=new <String>ArrayList();
+            clienteNuevo.setMascotas(lNue);
+            clienteNuevo.setNumTelf(jTextField11.getText());
+            cliDAO.registrar(clienteNuevo);
+            recargar();
+                
+                } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jPanel3MouseClicked
 
@@ -525,9 +550,37 @@ public class Cliente extends javax.swing.JFrame {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel5MouseClicked
-
+    //MODIFICAR
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-      
+      try{
+            String nombreViejo=String.valueOf(jComboBox1.getSelectedItem());
+            ClienteDAO objetoClienteDAO=new ClienteDAO();
+            
+            Code.Cliente clienteModificar= new Code.Cliente();
+            clienteModificar.setName(jTextField8.getText());
+            clienteModificar.setApellido(jTextField9.getText());
+            clienteModificar.setDni(jTextField10.getText());
+            clienteModificar.setNumTelf(jTextField11.getText());
+            clienteModificar.setFechaNacimineto(jTextField12.getText());
+            clienteModificar.setFechaIngreso("Pendiente");
+            clienteModificar.setFechaUltMod("Pendiente");
+            clienteModificar.setDireccion(jTextField13.getText());
+            clienteModificar.setDeuda(10);
+            List<String> listMasc=new <String>ArrayList();
+            int numMasc=jComboBox2.getItemCount();
+            for(int i=0;i<numMasc;i++){
+                listMasc.add(jComboBox2.getItemAt(i));
+            }
+            
+            clienteModificar.setMascotas(listMasc);
+            System.out.println("Vamos a Modificar el objeto ");
+            
+            objetoClienteDAO.modificar(clienteModificar, nombreViejo);
+            //recarga();
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked

@@ -83,7 +83,7 @@ public class ClienteDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Dirección, FechaIngreso, FechaNacimiento, FechaUltimaVisita,Mascotas) VALUES (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Dirección, FechaIngreso, FechaNacimiento, FechaUltimaVisita,Mascotas,Deuda) VALUES (?,?,?,?,?,?,?,?,?,?)");
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
             st.setString(3, cliente.getApellido());
@@ -111,5 +111,47 @@ public class ClienteDAO extends ConexionBD {
                 throw new Exception("Cerrar conexión insertar cliente " + e.getMessage()); 
             }
         }
+    }
+
+    public void modificar(Cliente cliente, String nombreViejo) throws Exception {
+        try{
+            Connection cn;
+            this.abrirConexion();
+            cn=this.getConexion();
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE clientes SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Dirección = ?, FechaIngreso = ?, FechaNacimiento=?, FechaUltimaVisita=?, Mascotas=?, Deuda=? WHERE Nombre = ?");
+           
+            st.setString(1, cliente.getDni());
+            st.setString(2, cliente.getName()); 
+            st.setString(3, cliente.getApellido());
+            st.setInt(4, Integer.parseInt(cliente.getNumTelf()));
+            st.setString(5, cliente.getDireccion());
+            st.setString(6, cliente.getFechaIngreso());
+            st.setString(7, cliente.getFechaNacimineto() ); 
+            st.setString(8, cliente.getFechaUltMod());
+            List<String> listClient=cliente.getMascotas();
+            String strListClientes="";
+            for(String aux : listClient){
+                strListClientes=strListClientes+aux+",";
+            }
+            st.setString(9, strListClientes);
+            st.setInt(10,20);
+            st.setString(11,nombreViejo);
+            System.out.println(st);
+
+            st.executeUpdate();
+
+
+        } catch (Exception e) {
+            throw new Exception("modificar cliente " + e.getMessage()); 
+        }
+        finally{
+            try{
+                
+                this.cerrarConexion();
+            }catch (Exception e){
+                throw new Exception("Cerrar conexión modificar cliente " + e.getMessage()); 
+            }
+        }
+            
     }
 }

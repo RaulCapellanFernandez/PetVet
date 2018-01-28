@@ -78,7 +78,7 @@ public class MascotaDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             PreparedStatement st = this.getConexion().prepareStatement("UPDATE mascotas SET NumeroChip = ?, Nombre = ?, TipoMascota = ?, Raza = ?, DNICliente = ?, Peso = ?, Edad=?, Especie=? WHERE NumeroChip = ?");
-            System.out.println("Modificar la mascota "+DNIMod);
+           // System.out.println("Modificar la mascota "+DNIMod);
             
             st.setInt(1, mascota.getNumChip());
             st.setString(2, mascota.getNombre()); 
