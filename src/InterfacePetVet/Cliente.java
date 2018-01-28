@@ -576,15 +576,29 @@ public class Cliente extends javax.swing.JFrame {
             System.out.println("Vamos a Modificar el objeto ");
             
             objetoClienteDAO.modificar(clienteModificar, nombreViejo);
-            //recarga();
+            recargar();
            
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel7MouseClicked
-
+    //BORRAR CLIENTE
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
-       
+        try {
+            String nombreABorrar=jTextField8.getText();
+            ClienteDAO cliDAO=new ClienteDAO();
+            Code.Cliente clienteBorrar=new Code.Cliente();
+            clienteBorrar.setDni(jTextField10.getText());
+            clienteBorrar.setName(jTextField8.getText());
+            System.out.println("Vamos a borrar el objeto");
+            cliDAO.eliminar(clienteBorrar);
+            dispose();
+            Cliente jCliente=new Cliente();
+            jCliente.setVisible(true);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jPanel8MouseClicked
 
     /**

@@ -32,7 +32,7 @@ CREATE TABLE clientes (
   Nombre char(20) NOT NULL,
   Apellidos char(45) NOT NULL,
   Telefono int(11) NOT NULL,
-  Dirección varchar(45) NOT NULL,
+  Dir varchar(45) NOT NULL,
   FechaIngreso varchar(45) NOT NULL,
   FechaNacimiento varchar(45) NOT NULL,
   FechaUltimaVisita varchar(45) NOT NULL,

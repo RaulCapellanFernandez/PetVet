@@ -34,7 +34,7 @@ public class ClienteDAO extends ConexionBD {
                 cliente.setName(rs.getString("Nombre")); 
                 cliente.setApellido(rs.getString("Apellidos")); 
                 cliente.setNumTelf(rs.getString("Telefono")); 
-                cliente.setDireccion(rs.getString("Dirección")); 
+                cliente.setDireccion(rs.getString("Dir")); 
                 cliente.setFechaIngreso(rs.getString("FechaIngreso"));
                 cliente.setFechaNacimineto(rs.getString("FechaNacimiento")); 
                 cliente.setFechaUltMod(rs.getString("FechaUltimaVisita"));
@@ -62,7 +62,7 @@ public class ClienteDAO extends ConexionBD {
     public void eliminar(Cliente cliente) throws Exception {
         try{
             this.abrirConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM cliente WHERE DNI==?");
+            PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM clientes WHERE DNI LIKE ?");
             st.setString(1, cliente.getDni()); st.executeUpdate();
         }
         catch (Exception e){
@@ -83,7 +83,7 @@ public class ClienteDAO extends ConexionBD {
             this.abrirConexion();
             cn=this.getConexion();
             
-            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO empleados (DNI, Nombre, Apellidos, Telefono, Dirección, FechaIngreso, FechaNacimiento, FechaUltimaVisita,Mascotas,Deuda) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO clientes VALUES (?,?,?,?,?,?,?,?,?,?)");
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
             st.setString(3, cliente.getApellido());
@@ -118,7 +118,7 @@ public class ClienteDAO extends ConexionBD {
             Connection cn;
             this.abrirConexion();
             cn=this.getConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("UPDATE clientes SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Dirección = ?, FechaIngreso = ?, FechaNacimiento=?, FechaUltimaVisita=?, Mascotas=?, Deuda=? WHERE Nombre = ?");
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE clientes SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Dir = ?, FechaIngreso = ?, FechaNacimiento=?, FechaUltimaVisita=?, Mascotas=?, Deuda=? WHERE Nombre = ?");
            
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
