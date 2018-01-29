@@ -363,7 +363,11 @@ public class Medicina extends javax.swing.JFrame {
                 jTextField9.setText(String.valueOf(medicamentoSeleccionado.getNombreTecnico()));
                 jTextField10.setText(String.valueOf(medicamentoSeleccionado.getCantidadMedicamento()));
                 ArrayList<String> listPrin=medicamentoSeleccionado.getPrincipiosActivos();
-                jTextField12.setText();
+                String strListPrin="";
+                for(String aux : listPrin){
+                    strListPrin=strListPrin+aux+",";
+                }
+                jTextField12.setText(strListPrin);
                
             }
         } catch (Exception ex) {
