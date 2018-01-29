@@ -58,8 +58,10 @@ public class MascotaDAO extends ConexionBD {
     public void eliminar(Mascota mascota) throws Exception{
         try{
             this.abrirConexion();
-            PreparedStatement st=this.getConexion().prepareStatement("DElETE FROM mascotas WHERE NumeroChip==?");
-            st.setInt(1,mascota.getNumChip());st.executeUpdate();
+            PreparedStatement st=this.getConexion().prepareStatement("DElETE FROM mascotas WHERE NumeroChip = ?");
+            st.setInt(1,mascota.getNumChip());
+            System.err.println(st);
+            st.executeUpdate();
             
         }
         catch(Exception e){

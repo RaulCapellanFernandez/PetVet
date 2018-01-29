@@ -55,6 +55,8 @@ public class Mascota extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -157,6 +159,20 @@ public class Mascota extends javax.swing.JFrame {
         jPanel6.add(jLabel16);
 
         jPanel8.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 70, -1));
+
+        jPanel12.setBackground(new java.awt.Color(153, 51, 255));
+        jPanel12.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
+            }
+        });
+
+        jLabel17.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel17.setText("Recargar");
+        jPanel12.add(jLabel17);
+
+        jPanel8.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 70, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(240, 240, 240));
@@ -415,6 +431,7 @@ public class Mascota extends javax.swing.JFrame {
             Code.Mascota mascotaAEliminar=new Code.Mascota();
             mascotaAEliminar.setNumChip(chipAEliminar);
             masDAO.eliminar(mascotaAEliminar);
+            recargaCompleta();
             dispose();
             Mascota jMascota=new Mascota();
             jMascota.setVisible(true);
@@ -477,8 +494,16 @@ public class Mascota extends javax.swing.JFrame {
     //Cargar mascota
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         try {
+            int intChip;
+            if(jComboBox1.getItemCount()==0){
+                intChip=Integer.valueOf(jTextField2.getText());
+            }
+            else{
+                intChip=Integer.valueOf((String)jComboBox1.getSelectedItem());
+            }
+                
             
-            int intChip=Integer.valueOf((String)jComboBox1.getSelectedItem());
+            
            
             objetoMascotaDAO=new MascotaDAO();
             Code.Mascota mascotaEncontrada=new Code.Mascota();
@@ -539,6 +564,7 @@ public class Mascota extends javax.swing.JFrame {
            
             objetoMascotaDAO.modificar(mascotaModificar, ChipNuevo);
             recarga();
+            recargaCompleta();
            
         } catch (Exception ex) {
             Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -572,8 +598,9 @@ public class Mascota extends javax.swing.JFrame {
             
             System.out.println("Vamos a registrar el objeto");
             objetoMascotaDAO.registrar(mascotaNueva);
-            anadirMascotaACliente(mascotaNueva.getNumChip(),mascotaNueva.getDniCliente());
             recarga();
+            anadirMascotaALista(mascotaNueva.getDniCliente(), mascotaNueva.getNumChip());
+            
             //jComboBox1.insertItemAt(empleadoNuevo.getName(), jComboBox1.getItemCount());
         } catch (Exception ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -583,6 +610,10 @@ public class Mascota extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jLabel8MouseClicked
+    //RECARGA COMPLETA
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
+        recargaCompleta();
+    }//GEN-LAST:event_jPanel12MouseClicked
 
     /**
      * @param args the command line arguments
@@ -633,11 +664,13 @@ public class Mascota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -675,26 +708,57 @@ public class Mascota extends javax.swing.JFrame {
         }
     }
 
-    private void anadirMascotaACliente(int numChip, String dniCliente) {
+    
+
+    private void anadirMascotaALista(String dniCliente, int numChip) {
         try {
-            Code.ClienteDAO cliDAO=new ClienteDAO();
-            ArrayList<Code.Cliente> listaClientes=cliDAO.listaClientes;
-            Code.Cliente dueno=new Code.Cliente();
-            for(Code.Cliente aux : listaClientes){
+            ClienteDAO cliDAO=new ClienteDAO();
+            List<Code.Cliente> listCli=cliDAO.listaClientes;
+            for(Code.Cliente aux : listCli){
                 if(aux.getDni().equals(dniCliente)){
-                    dueno=aux;
+                    Code.Mascota mascActualizada;
+                    List<String> listMascVieja=aux.getMascotas();
+                    listMascVieja.add(String.valueOf(aux));
+                    aux.setMascotas(listMascVieja);
+                    System.out.println("Añadimos esta mascota"+numChip+" al cliente "+dniCliente);
+                    cliDAO.modificar(aux, dniCliente);
+                    
+                    
                 }
             }
-            List<String> listaMascotas=dueno.getMascotas();
-            listaMascotas.add(String.valueOf(numChip));
-            dueno.setMascotas(listaMascotas);
-            cliDAO.modificar(dueno, dueno.getDni());
-            
-            
         } catch (Exception ex) {
             Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        
     }
+
+    private void recargaCompleta() {
+        try {
+            ClienteDAO cliDAO=new ClienteDAO();
+            MascotaDAO masDAO=new MascotaDAO();
+            List<Code.Cliente> lisCli=cliDAO.listaClientes;
+            List<Code.Mascota> lisMas=masDAO.listaMascotas;
+            List<String> listaMascotasUnicas;
+            String dniCli;
+            for(Code.Cliente cliAux : lisCli){
+                listaMascotasUnicas=new <String>ArrayList();
+                dniCli=cliAux.getDni();
+                for(Code.Mascota masAux : lisMas){
+                    if(masAux.getDniCliente().equals(dniCli)){
+                        listaMascotasUnicas.add(String.valueOf(masAux.getNumChip()));
+                    }
+                }
+                cliAux.setMascotas(listaMascotasUnicas);
+                cliDAO.modificar(cliAux, dniCli);
+            }
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }

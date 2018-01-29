@@ -118,7 +118,7 @@ public class ClienteDAO extends ConexionBD {
             Connection cn;
             this.abrirConexion();
             cn=this.getConexion();
-            PreparedStatement st = this.getConexion().prepareStatement("UPDATE clientes SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Dir = ?, FechaIngreso = ?, FechaNacimiento=?, FechaUltimaVisita=?, Mascotas=?, Deuda=? WHERE Nombre = ?");
+            PreparedStatement st = this.getConexion().prepareStatement("UPDATE clientes SET DNI = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Dir = ?, FechaIngreso = ?, FechaNacimiento=?, FechaUltimaVisita=?, Mascotas=?, Deuda=? WHERE DNI = ?");
            
             st.setString(1, cliente.getDni());
             st.setString(2, cliente.getName()); 
