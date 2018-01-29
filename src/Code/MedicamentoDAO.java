@@ -104,7 +104,7 @@ public class MedicamentoDAO extends ConexionBD {
         }
     }
     
-    public void modificar(Medicamento medicamento)throws Exception{
+    public void modificar(Medicamento medicamento,int codViejo)throws Exception{
         try {
             Connection cn;
             this.abrirConexion();
@@ -119,7 +119,7 @@ public class MedicamentoDAO extends ConexionBD {
             
             st.setString(4, prueba);
            
-            st.setInt(5, medicamento.getCodigoMedicamento());
+            st.setInt(5, codViejo);
             System.out.println(st);
             st.executeUpdate();
             
