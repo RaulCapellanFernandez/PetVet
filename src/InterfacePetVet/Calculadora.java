@@ -5,6 +5,11 @@
  */
 package InterfacePetVet;
 
+import Code.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +23,7 @@ public class Calculadora extends javax.swing.JFrame {
      */
     public Calculadora() {
         initComponents();
+        cargarDuenos();
     }
 
     /**
@@ -64,6 +70,9 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel_Volver = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        clickCargaDueno = new javax.swing.JPanel();
+        clickCargaMascota = new javax.swing.JPanel();
+        clickCargaPrincipio = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,10 +127,8 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel16.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 170, 10));
         jPanel16.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 120, 10));
 
-        jComboBoxMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel16.add(jComboBoxMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 210, -1));
 
-        jComboBoxDueno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxDueno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxDuenoActionPerformed(evt);
@@ -161,16 +168,19 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel16.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 210, -1));
         jPanel16.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 210, 10));
 
-        jComboBox_PrincipioActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel16.add(jComboBox_PrincipioActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
+        jComboBox_PrincipioActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_PrincipioActivoActionPerformed(evt);
+            }
+        });
+        jPanel16.add(jComboBox_PrincipioActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 160, -1));
 
-        jComboBox_Medicamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_Medicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_MedicamentoActionPerformed(evt);
             }
         });
-        jPanel16.add(jComboBox_Medicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 160, -1));
+        jPanel16.add(jComboBox_Medicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 160, -1));
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(240, 240, 240));
@@ -196,11 +206,16 @@ public class Calculadora extends javax.swing.JFrame {
         jTextField_Resultado.setForeground(new java.awt.Color(240, 240, 240));
         jTextField_Resultado.setText("Resultado");
         jTextField_Resultado.setBorder(null);
-        jPanel16.add(jTextField_Resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 210, -1));
-        jPanel16.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 210, 5));
+        jPanel16.add(jTextField_Resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 320, -1));
+        jPanel16.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 375, 270, 10));
 
         jPanel17.setBackground(new java.awt.Color(0, 153, 102));
         jPanel17.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel17MouseClicked(evt);
+            }
+        });
 
         jLabel48.setForeground(new java.awt.Color(240, 240, 240));
         jLabel48.setText("Calcular");
@@ -235,6 +250,66 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel_Volver.add(jLabel12);
 
         jPanel16.add(jPanel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 70, -1));
+
+        clickCargaDueno.setBackground(new java.awt.Color(102, 153, 255));
+        clickCargaDueno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCargaDuenoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout clickCargaDuenoLayout = new javax.swing.GroupLayout(clickCargaDueno);
+        clickCargaDueno.setLayout(clickCargaDuenoLayout);
+        clickCargaDuenoLayout.setHorizontalGroup(
+            clickCargaDuenoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        clickCargaDuenoLayout.setVerticalGroup(
+            clickCargaDuenoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel16.add(clickCargaDueno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 20, 20));
+
+        clickCargaMascota.setBackground(new java.awt.Color(102, 153, 255));
+        clickCargaMascota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCargaMascotaMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout clickCargaMascotaLayout = new javax.swing.GroupLayout(clickCargaMascota);
+        clickCargaMascota.setLayout(clickCargaMascotaLayout);
+        clickCargaMascotaLayout.setHorizontalGroup(
+            clickCargaMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        clickCargaMascotaLayout.setVerticalGroup(
+            clickCargaMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel16.add(clickCargaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 20, 20));
+
+        clickCargaPrincipio.setBackground(new java.awt.Color(102, 153, 255));
+        clickCargaPrincipio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCargaPrincipioMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout clickCargaPrincipioLayout = new javax.swing.GroupLayout(clickCargaPrincipio);
+        clickCargaPrincipio.setLayout(clickCargaPrincipioLayout);
+        clickCargaPrincipioLayout.setHorizontalGroup(
+            clickCargaPrincipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        clickCargaPrincipioLayout.setVerticalGroup(
+            clickCargaPrincipioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel16.add(clickCargaPrincipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 20, 20));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -288,9 +363,9 @@ public class Calculadora extends javax.swing.JFrame {
     private void jTextField_EdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EdadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_EdadActionPerformed
-
+    
     private void jComboBoxDuenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDuenoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBoxDuenoActionPerformed
 
     private void jPanel_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_VolverMouseClicked
@@ -298,6 +373,29 @@ public class Calculadora extends javax.swing.JFrame {
         vBuscar.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel_VolverMouseClicked
+
+    private void jComboBox_PrincipioActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PrincipioActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_PrincipioActivoActionPerformed
+    //Dueno Seleccionado
+    private void clickCargaDuenoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCargaDuenoMouseClicked
+        //System.out.println("Has seleccionado a "+jComboBoxDueno.getSelectedItem());
+        cargaMascotas();
+    }//GEN-LAST:event_clickCargaDuenoMouseClicked
+    //Principio activo
+    private void clickCargaPrincipioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCargaPrincipioMouseClicked
+       //System.out.println("Has seleccionado a "+jComboBox_Medicamento.getSelectedItem());
+       cargarMedicamentos();
+    }//GEN-LAST:event_clickCargaPrincipioMouseClicked
+
+    private void clickCargaMascotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCargaMascotaMouseClicked
+       //System.out.println("Has seleccionado a "+jComboBoxMascota.getSelectedItem());
+        cargaPrincipio(); // TODO add your handling code here:
+    }//GEN-LAST:event_clickCargaMascotaMouseClicked
+    //CALCULAR
+    private void jPanel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel17MouseClicked
+       calcular();
+    }//GEN-LAST:event_jPanel17MouseClicked
 
     /**
      * @param args the command line arguments
@@ -335,6 +433,9 @@ public class Calculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel clickCargaDueno;
+    private javax.swing.JPanel clickCargaMascota;
+    private javax.swing.JPanel clickCargaPrincipio;
     private javax.swing.JComboBox<String> jComboBoxDueno;
     private javax.swing.JComboBox<String> jComboBoxMascota;
     private javax.swing.JComboBox<String> jComboBox_Medicamento;
@@ -371,4 +472,125 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Edad;
     private javax.swing.JTextField jTextField_Resultado;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDuenos() {
+        try {
+            
+            jComboBoxDueno.removeAllItems();
+            ClienteDAO cliDAO=new ClienteDAO();
+            List<Code.Cliente> listCli=cliDAO.listaClientes;
+            for(Code.Cliente aux : listCli){
+                jComboBoxDueno.addItem(aux.getDni());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void cargaMascotas() {
+        try {
+            
+            jComboBoxMascota.removeAllItems();
+            MascotaDAO masDAO=new MascotaDAO();
+            List<Code.Mascota> listMas=masDAO.listaMascotas;
+            for(Code.Mascota aux : listMas){
+                if(aux.getDniCliente().equals(String.valueOf(jComboBoxDueno.getSelectedItem()))){
+                    jComboBoxMascota.addItem(String.valueOf(aux.getNumChip()));
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void cargaPrincipio() {
+        try {
+            
+            jComboBox_PrincipioActivo.removeAllItems();
+            MascotaDAO masDAO=new MascotaDAO();
+            List<Code.Mascota> listMas=masDAO.listaMascotas;
+            Code.Mascota mascotaSeleccionada=new Code.Mascota();
+            for(Code.Mascota aux : listMas){
+                if(String.valueOf(aux.getNumChip()).equals(String.valueOf(jComboBoxMascota.getSelectedItem()))){
+                    mascotaSeleccionada=aux;
+                }
+            }
+            jTextField_Edad.setText(String.valueOf(mascotaSeleccionada.getEdad()));
+            jTextField14.setText(String.valueOf(mascotaSeleccionada.getPeso()));
+            jTextField15.setText(mascotaSeleccionada.getRaza()+", "+mascotaSeleccionada.getEspecie()+", "+mascotaSeleccionada.getNombre());
+            
+            MedicamentoDAO medDAO=new MedicamentoDAO();
+            List<Code.Medicamento> listMed=medDAO.listaMedicamentos;
+            List<String> listaPrincipios=new <String>ArrayList();
+            for(Code.Medicamento aux : listMed){
+                listaPrincipios.addAll(aux.getPrincipiosActivos());
+            }
+            String anterior="";        
+            
+            for(String auxStr : listaPrincipios){
+                if(anterior.equals(auxStr)){
+                    
+                }
+                else{
+                    jComboBox_PrincipioActivo.addItem(auxStr);
+                }
+                anterior=auxStr;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    private void cargarMedicamentos() {
+        try {
+            jComboBox_Medicamento.removeAllItems();
+            MedicamentoDAO medDAO=new MedicamentoDAO();
+            List<Code.Medicamento> listMed=medDAO.listaMedicamentos;
+            List<String> listaMedicamentos=new <String>ArrayList();
+            List<String> listaPrincipios=new <String>ArrayList();
+            String principioSeleccionado=String.valueOf(jComboBox_PrincipioActivo.getSelectedItem());
+            for(Code.Medicamento aux : listMed){
+                listaPrincipios=aux.getPrincipiosActivos();
+                System.out.println("Los principios de "+aux.getNombreTecnico()+" son "+listaPrincipios);
+                for(String aux2 : listaPrincipios){
+                    System.out.println(principioSeleccionado+" es "+aux2+" ?");
+                    if(principioSeleccionado.equals(aux2)){
+                        listaMedicamentos.add(String.valueOf(aux.getNombreTecnico()));
+                    }
+                }
+            }
+            for(String aux3 : listaMedicamentos){
+                jComboBox_Medicamento.addItem(aux3);
+            }
+                    } catch (Exception ex) {
+            Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void calcular() {
+        try {
+            ConcentracionDAO conDAO=new ConcentracionDAO();
+            List<Code.Concentracion> listCon=conDAO.listaConcentraciones;
+            Code.Concentracion concentracionDeseada=new Code.Concentracion();
+            String medicamentoDeseado=String.valueOf(jComboBox_Medicamento.getSelectedItem());
+            String principioDeseado=String.valueOf(jComboBox_PrincipioActivo.getSelectedItem());
+            for(Code.Concentracion aux : listCon){
+                if(aux.getNombreMedicamento().equals(medicamentoDeseado)){
+                    if(aux.getNombrePrincipio().equals(principioDeseado)){
+                        concentracionDeseada=aux;
+                    }
+                }
+            }
+            //METODO CALCULAR DOSIS / FUNCION
+            float peso=Float.parseFloat(jTextField14.getText());
+            float concentracionPorPeso=concentracionDeseada.getConcentracionPorUnidad();
+            jTextField_Resultado.setText("Resultado: "+peso*concentracionPorPeso+"mg de "+String.valueOf(jComboBox_Medicamento.getSelectedItem()));
+            
+            
+            
+        
+        } catch (Exception ex) {
+            Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
