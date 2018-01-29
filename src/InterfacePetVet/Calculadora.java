@@ -33,7 +33,6 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jSeparator18 = new javax.swing.JSeparator();
         jLabel_Titulo = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -78,9 +77,6 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel_Titulo.setForeground(new java.awt.Color(240, 240, 240));
         jLabel_Titulo.setText("Calculadora");
         jPanel16.add(jLabel_Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
-
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ic_calculator_white_24dp.png"))); // NOI18N
-        jPanel16.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 90));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(240, 240, 240));
@@ -345,7 +341,6 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox_PrincipioActivo;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
